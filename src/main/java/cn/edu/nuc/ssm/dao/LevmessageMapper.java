@@ -1,6 +1,6 @@
 package cn.edu.nuc.ssm.dao;
 
-import cn.edu.nuc.ssm.modle.Levmessage;
+import cn.edu.nuc.ssm.model.Levmessage;
 
 public interface LevmessageMapper {
     int deleteByPrimaryKey(Integer levmsgeid);

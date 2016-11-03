@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.edu.nuc.ssm.dao.CommentMapper" >
-  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.modle.Comment" >
+  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.model.Comment" >
     <id column="commentid" property="commentid" jdbcType="INTEGER" />
     <result column="funid" property="funid" jdbcType="INTEGER" />
     <result column="commentinfo" property="commentinfo" jdbcType="VARCHAR" />
@@ -22,7 +22,7 @@
     delete from comment
     where commentid = #{commentid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.edu.nuc.ssm.modle.Comment" >
+  <insert id="insert" parameterType="cn.edu.nuc.ssm.model.Comment" >
     insert into comment (commentid, funid, commentinfo, 
       pcommentid, commenttime, fcommentid
       )
@@ -30,7 +30,7 @@
       #{pcommentid,jdbcType=INTEGER}, #{commenttime,jdbcType=DATE}, #{fcommentid,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.modle.Comment" >
+  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.model.Comment" >
     insert into comment
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="commentid != null" >
@@ -73,7 +73,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.modle.Comment" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.model.Comment" >
     update comment
     <set >
       <if test="funid != null" >
@@ -94,7 +94,7 @@
     </set>
     where commentid = #{commentid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.modle.Comment" >
+  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.model.Comment" >
     update comment
     set funid = #{funid,jdbcType=INTEGER},
       commentinfo = #{commentinfo,jdbcType=VARCHAR},

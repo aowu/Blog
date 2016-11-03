@@ -1,6 +1,6 @@
 package cn.edu.nuc.ssm.dao;
 
-import cn.edu.nuc.ssm.modle.Data;
+import cn.edu.nuc.ssm.model.Data;
 
 public interface DataMapper {
     int deleteByPrimaryKey(Integer dataid);

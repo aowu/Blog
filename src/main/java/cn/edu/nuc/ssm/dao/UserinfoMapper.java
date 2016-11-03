@@ -1,6 +1,6 @@
 package cn.edu.nuc.ssm.dao;
 
-import cn.edu.nuc.ssm.modle.Userinfo;
+import cn.edu.nuc.ssm.model.Userinfo;
 
 public interface UserinfoMapper {
     int deleteByPrimaryKey(Integer infoid);

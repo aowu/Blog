@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.edu.nuc.ssm.dao.LevmessageMapper" >
-  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.modle.Levmessage" >
+  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.model.Levmessage" >
     <id column="levmsgeid" property="levmsgeid" jdbcType="INTEGER" />
     <result column="userid" property="userid" jdbcType="INTEGER" />
     <result column="plevmsgid" property="plevmsgid" jdbcType="INTEGER" />
@@ -21,13 +21,13 @@
     delete from levmessage
     where levmsgeid = #{levmsgeid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.edu.nuc.ssm.modle.Levmessage" >
+  <insert id="insert" parameterType="cn.edu.nuc.ssm.model.Levmessage" >
     insert into levmessage (levmsgeid, userid, plevmsgid, 
       levmsginfo, levmsgtime)
     values (#{levmsgeid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{plevmsgid,jdbcType=INTEGER}, 
       #{levmsginfo,jdbcType=VARCHAR}, #{levmsgtime,jdbcType=DATE})
   </insert>
-  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.modle.Levmessage" >
+  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.model.Levmessage" >
     insert into levmessage
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="levmsgeid != null" >
@@ -64,7 +64,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.modle.Levmessage" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.model.Levmessage" >
     update levmessage
     <set >
       <if test="userid != null" >
@@ -82,7 +82,7 @@
     </set>
     where levmsgeid = #{levmsgeid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.modle.Levmessage" >
+  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.model.Levmessage" >
     update levmessage
     set userid = #{userid,jdbcType=INTEGER},
       plevmsgid = #{plevmsgid,jdbcType=INTEGER},

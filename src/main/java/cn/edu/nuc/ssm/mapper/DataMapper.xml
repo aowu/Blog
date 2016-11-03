@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.edu.nuc.ssm.dao.DataMapper" >
-  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.modle.Data" >
+  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.model.Data" >
     <id column="dataid" property="dataid" jdbcType="INTEGER" />
     <result column="userid" property="userid" jdbcType="INTEGER" />
     <result column="dataurl" property="dataurl" jdbcType="VARCHAR" />
@@ -19,13 +19,13 @@
     delete from data
     where dataid = #{dataid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.edu.nuc.ssm.modle.Data" >
+  <insert id="insert" parameterType="cn.edu.nuc.ssm.model.Data" >
     insert into data (dataid, userid, dataurl
       )
     values (#{dataid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{dataurl,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.modle.Data" >
+  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.model.Data" >
     insert into data
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="dataid != null" >
@@ -50,7 +50,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.modle.Data" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.model.Data" >
     update data
     <set >
       <if test="userid != null" >
@@ -62,7 +62,7 @@
     </set>
     where dataid = #{dataid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.modle.Data" >
+  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.model.Data" >
     update data
     set userid = #{userid,jdbcType=INTEGER},
       dataurl = #{dataurl,jdbcType=VARCHAR}

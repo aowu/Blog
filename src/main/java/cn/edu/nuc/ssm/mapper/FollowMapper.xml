@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.edu.nuc.ssm.dao.FollowMapper" >
-  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.modle.Follow" >
+  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.model.Follow" >
     <id column="followid" property="followid" jdbcType="INTEGER" />
     <result column="userid" property="userid" jdbcType="INTEGER" />
     <result column="targetuserid" property="targetuserid" jdbcType="INTEGER" />
@@ -20,13 +20,13 @@
     delete from follow
     where followid = #{followid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.edu.nuc.ssm.modle.Follow" >
+  <insert id="insert" parameterType="cn.edu.nuc.ssm.model.Follow" >
     insert into follow (followid, userid, targetuserid, 
       followsta)
     values (#{followid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{targetuserid,jdbcType=INTEGER}, 
       #{followsta,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.modle.Follow" >
+  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.model.Follow" >
     insert into follow
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="followid != null" >
@@ -57,7 +57,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.modle.Follow" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.model.Follow" >
     update follow
     <set >
       <if test="userid != null" >
@@ -72,7 +72,7 @@
     </set>
     where followid = #{followid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.modle.Follow" >
+  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.model.Follow" >
     update follow
     set userid = #{userid,jdbcType=INTEGER},
       targetuserid = #{targetuserid,jdbcType=INTEGER},

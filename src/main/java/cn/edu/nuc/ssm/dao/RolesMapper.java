@@ -1,6 +1,6 @@
 package cn.edu.nuc.ssm.dao;
 
-import cn.edu.nuc.ssm.modle.Roles;
+import cn.edu.nuc.ssm.model.Roles;
 
 public interface RolesMapper {
     int deleteByPrimaryKey(Integer roleid);

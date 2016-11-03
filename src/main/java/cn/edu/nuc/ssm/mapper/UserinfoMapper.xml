@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.edu.nuc.ssm.dao.UserinfoMapper" >
-  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.modle.Userinfo" >
+  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.model.Userinfo" >
     <id column="infoid" property="infoid" jdbcType="INTEGER" />
     <result column="userid" property="userid" jdbcType="INTEGER" />
-    <result column="usersex" property="usersex" jdbcType="INTEGER" />
+    <result column="usersex" property="usersex" jdbcType="VARCHAR" />
     <result column="introduce" property="introduce" jdbcType="VARCHAR" />
     <result column="mail" property="mail" jdbcType="VARCHAR" />
     <result column="birth" property="birth" jdbcType="DATE" />
@@ -22,15 +22,15 @@
     delete from userinfo
     where infoid = #{infoid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.edu.nuc.ssm.modle.Userinfo" >
+  <insert id="insert" parameterType="cn.edu.nuc.ssm.model.Userinfo" >
     insert into userinfo (infoid, userid, usersex, 
       introduce, mail, birth
       )
-    values (#{infoid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{usersex,jdbcType=INTEGER}, 
+    values (#{infoid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{usersex,jdbcType=VARCHAR}, 
       #{introduce,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR}, #{birth,jdbcType=DATE}
       )
   </insert>
-  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.modle.Userinfo" >
+  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.model.Userinfo" >
     insert into userinfo
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="infoid != null" >
@@ -60,7 +60,7 @@
         #{userid,jdbcType=INTEGER},
       </if>
       <if test="usersex != null" >
-        #{usersex,jdbcType=INTEGER},
+        #{usersex,jdbcType=VARCHAR},
       </if>
       <if test="introduce != null" >
         #{introduce,jdbcType=VARCHAR},
@@ -73,14 +73,14 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.modle.Userinfo" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.model.Userinfo" >
     update userinfo
     <set >
       <if test="userid != null" >
         userid = #{userid,jdbcType=INTEGER},
       </if>
       <if test="usersex != null" >
-        usersex = #{usersex,jdbcType=INTEGER},
+        usersex = #{usersex,jdbcType=VARCHAR},
       </if>
       <if test="introduce != null" >
         introduce = #{introduce,jdbcType=VARCHAR},
@@ -94,10 +94,10 @@
     </set>
     where infoid = #{infoid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.modle.Userinfo" >
+  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.model.Userinfo" >
     update userinfo
     set userid = #{userid,jdbcType=INTEGER},
-      usersex = #{usersex,jdbcType=INTEGER},
+      usersex = #{usersex,jdbcType=VARCHAR},
       introduce = #{introduce,jdbcType=VARCHAR},
       mail = #{mail,jdbcType=VARCHAR},
       birth = #{birth,jdbcType=DATE}

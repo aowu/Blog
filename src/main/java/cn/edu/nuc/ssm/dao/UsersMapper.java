@@ -1,6 +1,6 @@
 package cn.edu.nuc.ssm.dao;
 
-import cn.edu.nuc.ssm.modle.Users;
+import cn.edu.nuc.ssm.model.Users;
 
 public interface UsersMapper {
     int deleteByPrimaryKey(Integer userid);
@@ -14,4 +14,6 @@ public interface UsersMapper {
     int updateByPrimaryKeySelective(Users record);
 
     int updateByPrimaryKey(Users record);
+    
+    Users selectByUsernum(String usernum);
 }

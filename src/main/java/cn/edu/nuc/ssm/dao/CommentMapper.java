@@ -1,6 +1,6 @@
 package cn.edu.nuc.ssm.dao;
 
-import cn.edu.nuc.ssm.modle.Comment;
+import cn.edu.nuc.ssm.model.Comment;
 
 public interface CommentMapper {
     int deleteByPrimaryKey(Integer commentid);

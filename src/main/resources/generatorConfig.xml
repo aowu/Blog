@@ -10,7 +10,7 @@
 	-->
 
     <!-- 数据库驱动包位置 -->
-    <classPathEntry location="I:/maven/repertory/mysql/mysql-connector-java/5.1.38/mysql-connector-java-5.1.38.jar" /> 
+    <classPathEntry location="I:/maven/repertory/mysql/mysql-connector-java/5.1.39/mysql-connector-java-5.1.39.jar" /> 
     <!-- <classPathEntry location="C:\oracle\product\10.2.0\db_1\jdbc\lib\ojdbc14.jar" />-->
     <context id="DB2Tables" targetRuntime="MyBatis3">
         <commentGenerator>
@@ -24,7 +24,7 @@
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
         <!-- 生成实体类的包名和位置，这里配置将生成的实体类放在me.gacl.domain这个包下 -->
-        <javaModelGenerator targetPackage="cn.edu.nuc.ssm.modle" targetProject="Blog\src\main\java">
+        <javaModelGenerator targetPackage="cn.edu.nuc.ssm.model" targetProject="Blog\src\main\java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>

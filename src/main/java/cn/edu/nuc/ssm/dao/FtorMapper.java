@@ -1,6 +1,6 @@
 package cn.edu.nuc.ssm.dao;
 
-import cn.edu.nuc.ssm.modle.Ftor;
+import cn.edu.nuc.ssm.model.Ftor;
 
 public interface FtorMapper {
     int deleteByPrimaryKey(Integer ftorid);

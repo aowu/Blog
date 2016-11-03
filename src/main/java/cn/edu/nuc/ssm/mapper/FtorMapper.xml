@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.edu.nuc.ssm.dao.FtorMapper" >
-  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.modle.Ftor" >
+  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.model.Ftor" >
     <id column="ftorid" property="ftorid" jdbcType="INTEGER" />
     <result column="funid" property="funid" jdbcType="INTEGER" />
     <result column="roleid" property="roleid" jdbcType="INTEGER" />
@@ -19,13 +19,13 @@
     delete from ftor
     where ftorid = #{ftorid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.edu.nuc.ssm.modle.Ftor" >
+  <insert id="insert" parameterType="cn.edu.nuc.ssm.model.Ftor" >
     insert into ftor (ftorid, funid, roleid
       )
     values (#{ftorid,jdbcType=INTEGER}, #{funid,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.modle.Ftor" >
+  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.model.Ftor" >
     insert into ftor
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="ftorid != null" >
@@ -50,7 +50,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.modle.Ftor" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.model.Ftor" >
     update ftor
     <set >
       <if test="funid != null" >
@@ -62,7 +62,7 @@
     </set>
     where ftorid = #{ftorid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.modle.Ftor" >
+  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.model.Ftor" >
     update ftor
     set funid = #{funid,jdbcType=INTEGER},
       roleid = #{roleid,jdbcType=INTEGER}

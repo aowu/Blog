@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.edu.nuc.ssm.dao.RolesMapper" >
-  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.modle.Roles" >
+  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.model.Roles" >
     <id column="roleid" property="roleid" jdbcType="INTEGER" />
     <result column="rolename" property="rolename" jdbcType="VARCHAR" />
     <result column="rolesta" property="rolesta" jdbcType="INTEGER" />
+    <result column="roleinfo" property="roleinfo" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    roleid, rolename, rolesta
+    roleid, rolename, rolesta, roleinfo
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -19,13 +20,13 @@
     delete from roles
     where roleid = #{roleid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.edu.nuc.ssm.modle.Roles" >
-    insert into roles (roleid, rolename, rolesta
-      )
-    values (#{roleid,jdbcType=INTEGER}, #{rolename,jdbcType=VARCHAR}, #{rolesta,jdbcType=INTEGER}
-      )
+  <insert id="insert" parameterType="cn.edu.nuc.ssm.model.Roles" >
+    insert into roles (roleid, rolename, rolesta, 
+      roleinfo)
+    values (#{roleid,jdbcType=INTEGER}, #{rolename,jdbcType=VARCHAR}, #{rolesta,jdbcType=INTEGER}, 
+      #{roleinfo,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.modle.Roles" >
+  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.model.Roles" >
     insert into roles
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="roleid != null" >
@@ -36,6 +37,9 @@
       </if>
       <if test="rolesta != null" >
         rolesta,
+      </if>
+      <if test="roleinfo != null" >
+        roleinfo,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -48,9 +52,12 @@
       <if test="rolesta != null" >
         #{rolesta,jdbcType=INTEGER},
       </if>
+      <if test="roleinfo != null" >
+        #{roleinfo,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.modle.Roles" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.model.Roles" >
     update roles
     <set >
       <if test="rolename != null" >
@@ -59,13 +66,17 @@
       <if test="rolesta != null" >
         rolesta = #{rolesta,jdbcType=INTEGER},
       </if>
+      <if test="roleinfo != null" >
+        roleinfo = #{roleinfo,jdbcType=VARCHAR},
+      </if>
     </set>
     where roleid = #{roleid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.modle.Roles" >
+  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.model.Roles" >
     update roles
     set rolename = #{rolename,jdbcType=VARCHAR},
-      rolesta = #{rolesta,jdbcType=INTEGER}
+      rolesta = #{rolesta,jdbcType=INTEGER},
+      roleinfo = #{roleinfo,jdbcType=VARCHAR}
     where roleid = #{roleid,jdbcType=INTEGER}
   </update>
 </mapper>

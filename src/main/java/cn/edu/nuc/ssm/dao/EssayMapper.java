@@ -1,6 +1,6 @@
 package cn.edu.nuc.ssm.dao;
 
-import cn.edu.nuc.ssm.modle.Essay;
+import cn.edu.nuc.ssm.model.Essay;
 
 public interface EssayMapper {
     int deleteByPrimaryKey(Integer esyid);

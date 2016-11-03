@@ -1,32 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.edu.nuc.ssm.dao.FunctionMapper" >
-  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.modle.Function" >
+  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.model.Function" >
     <id column="funid" property="funid" jdbcType="INTEGER" />
     <result column="funname" property="funname" jdbcType="VARCHAR" />
     <result column="funurl" property="funurl" jdbcType="VARCHAR" />
     <result column="funsta" property="funsta" jdbcType="INTEGER" />
+    <result column="funpid" property="funpid" jdbcType="INTEGER" />
+    <result column="funpname" property="funpname" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    funid, funname, funurl, funsta
+    funid, funname, funurl, funsta, funpid, funpname
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByFunid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from function
     where funid = #{funid,jdbcType=INTEGER}
   </select>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from function
     where funid = #{funid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.edu.nuc.ssm.modle.Function" >
+  <insert id="insert" parameterType="cn.edu.nuc.ssm.model.Function" >
     insert into function (funid, funname, funurl, 
-      funsta)
+      funsta, funpid, funpname
+      )
     values (#{funid,jdbcType=INTEGER}, #{funname,jdbcType=VARCHAR}, #{funurl,jdbcType=VARCHAR}, 
-      #{funsta,jdbcType=INTEGER})
+      #{funsta,jdbcType=INTEGER}, #{funpid,jdbcType=INTEGER}, #{funpname,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.modle.Function" >
+  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.model.Function" >
     insert into function
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="funid != null" >
@@ -40,6 +46,12 @@
       </if>
       <if test="funsta != null" >
         funsta,
+      </if>
+      <if test="funpid != null" >
+        funpid,
+      </if>
+      <if test="funpname != null" >
+        funpname,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -55,9 +67,15 @@
       <if test="funsta != null" >
         #{funsta,jdbcType=INTEGER},
       </if>
+      <if test="funpid != null" >
+        #{funpid,jdbcType=INTEGER},
+      </if>
+      <if test="funpname != null" >
+        #{funpname,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.modle.Function" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.model.Function" >
     update function
     <set >
       <if test="funname != null" >
@@ -69,14 +87,22 @@
       <if test="funsta != null" >
         funsta = #{funsta,jdbcType=INTEGER},
       </if>
+      <if test="funpid != null" >
+        funpid = #{funpid,jdbcType=INTEGER},
+      </if>
+      <if test="funpname != null" >
+        funpname = #{funpname,jdbcType=VARCHAR},
+      </if>
     </set>
     where funid = #{funid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.modle.Function" >
+  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.model.Function" >
     update function
     set funname = #{funname,jdbcType=VARCHAR},
       funurl = #{funurl,jdbcType=VARCHAR},
-      funsta = #{funsta,jdbcType=INTEGER}
+      funsta = #{funsta,jdbcType=INTEGER},
+      funpid = #{funpid,jdbcType=INTEGER},
+      funpname = #{funpname,jdbcType=VARCHAR}
     where funid = #{funid,jdbcType=INTEGER}
   </update>
 </mapper>

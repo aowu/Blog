@@ -1,6 +1,6 @@
 package cn.edu.nuc.ssm.dao;
 
-import cn.edu.nuc.ssm.modle.Function;
+import cn.edu.nuc.ssm.model.Function;
 
 public interface FunctionMapper {
     int deleteByPrimaryKey(Integer funid);
@@ -9,7 +9,7 @@ public interface FunctionMapper {
 
     int insertSelective(Function record);
 
-    Function selectByPrimaryKey(Integer funid);
+    Function selectByFunid(Integer funid);
 
     int updateByPrimaryKeySelective(Function record);
 

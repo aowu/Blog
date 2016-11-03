@@ -1,6 +1,6 @@
 package cn.edu.nuc.ssm.dao;
 
-import cn.edu.nuc.ssm.modle.Reply;
+import cn.edu.nuc.ssm.model.Reply;
 
 public interface ReplyMapper {
     int deleteByPrimaryKey(Integer replyid);
