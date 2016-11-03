@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.nuc.ssm.dao.UsersMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.modle.Users" >
+    <id column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="infoid" property="infoid" jdbcType="INTEGER" />
+    <result column="roleid" property="roleid" jdbcType="INTEGER" />
+    <result column="usernum" property="usernum" jdbcType="VARCHAR" />
+    <result column="userpas" property="userpas" jdbcType="VARCHAR" />
+    <result column="pictureurl" property="pictureurl" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="usertime" property="usertime" jdbcType="DATE" />
+    <result column="usersta" property="usersta" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    userid, infoid, roleid, usernum, userpas, pictureurl, username, usertime, usersta
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from users
+    where userid = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from users
+    where userid = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.nuc.ssm.modle.Users" >
+    insert into users (userid, infoid, roleid, 
+      usernum, userpas, pictureurl, 
+      username, usertime, usersta
+      )
+    values (#{userid,jdbcType=INTEGER}, #{infoid,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, 
+      #{usernum,jdbcType=VARCHAR}, #{userpas,jdbcType=VARCHAR}, #{pictureurl,jdbcType=VARCHAR}, 
+      #{username,jdbcType=VARCHAR}, #{usertime,jdbcType=DATE}, #{usersta,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.modle.Users" >
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="infoid != null" >
+        infoid,
+      </if>
+      <if test="roleid != null" >
+        roleid,
+      </if>
+      <if test="usernum != null" >
+        usernum,
+      </if>
+      <if test="userpas != null" >
+        userpas,
+      </if>
+      <if test="pictureurl != null" >
+        pictureurl,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="usertime != null" >
+        usertime,
+      </if>
+      <if test="usersta != null" >
+        usersta,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="infoid != null" >
+        #{infoid,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="usernum != null" >
+        #{usernum,jdbcType=VARCHAR},
+      </if>
+      <if test="userpas != null" >
+        #{userpas,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureurl != null" >
+        #{pictureurl,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="usertime != null" >
+        #{usertime,jdbcType=DATE},
+      </if>
+      <if test="usersta != null" >
+        #{usersta,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.modle.Users" >
+    update users
+    <set >
+      <if test="infoid != null" >
+        infoid = #{infoid,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        roleid = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="usernum != null" >
+        usernum = #{usernum,jdbcType=VARCHAR},
+      </if>
+      <if test="userpas != null" >
+        userpas = #{userpas,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureurl != null" >
+        pictureurl = #{pictureurl,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="usertime != null" >
+        usertime = #{usertime,jdbcType=DATE},
+      </if>
+      <if test="usersta != null" >
+        usersta = #{usersta,jdbcType=INTEGER},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.modle.Users" >
+    update users
+    set infoid = #{infoid,jdbcType=INTEGER},
+      roleid = #{roleid,jdbcType=INTEGER},
+      usernum = #{usernum,jdbcType=VARCHAR},
+      userpas = #{userpas,jdbcType=VARCHAR},
+      pictureurl = #{pictureurl,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      usertime = #{usertime,jdbcType=DATE},
+      usersta = #{usersta,jdbcType=INTEGER}
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.nuc.ssm.dao.EssayMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.modle.Essay" >
+    <id column="esyid" property="esyid" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="esyname" property="esyname" jdbcType="VARCHAR" />
+    <result column="esysummary" property="esysummary" jdbcType="VARCHAR" />
+    <result column="esyurl" property="esyurl" jdbcType="VARCHAR" />
+    <result column="esysta" property="esysta" jdbcType="INTEGER" />
+    <result column="esytime" property="esytime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    esyid, userid, esyname, esysummary, esyurl, esysta, esytime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from essay
+    where esyid = #{esyid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from essay
+    where esyid = #{esyid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.nuc.ssm.modle.Essay" >
+    insert into essay (esyid, userid, esyname, 
+      esysummary, esyurl, esysta, 
+      esytime)
+    values (#{esyid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{esyname,jdbcType=VARCHAR}, 
+      #{esysummary,jdbcType=VARCHAR}, #{esyurl,jdbcType=VARCHAR}, #{esysta,jdbcType=INTEGER}, 
+      #{esytime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.modle.Essay" >
+    insert into essay
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="esyid != null" >
+        esyid,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="esyname != null" >
+        esyname,
+      </if>
+      <if test="esysummary != null" >
+        esysummary,
+      </if>
+      <if test="esyurl != null" >
+        esyurl,
+      </if>
+      <if test="esysta != null" >
+        esysta,
+      </if>
+      <if test="esytime != null" >
+        esytime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="esyid != null" >
+        #{esyid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="esyname != null" >
+        #{esyname,jdbcType=VARCHAR},
+      </if>
+      <if test="esysummary != null" >
+        #{esysummary,jdbcType=VARCHAR},
+      </if>
+      <if test="esyurl != null" >
+        #{esyurl,jdbcType=VARCHAR},
+      </if>
+      <if test="esysta != null" >
+        #{esysta,jdbcType=INTEGER},
+      </if>
+      <if test="esytime != null" >
+        #{esytime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.modle.Essay" >
+    update essay
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="esyname != null" >
+        esyname = #{esyname,jdbcType=VARCHAR},
+      </if>
+      <if test="esysummary != null" >
+        esysummary = #{esysummary,jdbcType=VARCHAR},
+      </if>
+      <if test="esyurl != null" >
+        esyurl = #{esyurl,jdbcType=VARCHAR},
+      </if>
+      <if test="esysta != null" >
+        esysta = #{esysta,jdbcType=INTEGER},
+      </if>
+      <if test="esytime != null" >
+        esytime = #{esytime,jdbcType=DATE},
+      </if>
+    </set>
+    where esyid = #{esyid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.modle.Essay" >
+    update essay
+    set userid = #{userid,jdbcType=INTEGER},
+      esyname = #{esyname,jdbcType=VARCHAR},
+      esysummary = #{esysummary,jdbcType=VARCHAR},
+      esyurl = #{esyurl,jdbcType=VARCHAR},
+      esysta = #{esysta,jdbcType=INTEGER},
+      esytime = #{esytime,jdbcType=DATE}
+    where esyid = #{esyid,jdbcType=INTEGER}
+  </update>
+</mapper>

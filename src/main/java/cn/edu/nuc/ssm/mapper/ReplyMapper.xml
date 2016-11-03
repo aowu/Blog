@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.nuc.ssm.dao.ReplyMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.modle.Reply" >
+    <id column="replyid" property="replyid" jdbcType="INTEGER" />
+    <result column="commentid" property="commentid" jdbcType="INTEGER" />
+    <result column="replyinfo" property="replyinfo" jdbcType="VARCHAR" />
+    <result column="prtocid" property="prtocid" jdbcType="INTEGER" />
+    <result column="replytime" property="replytime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    replyid, commentid, replyinfo, prtocid, replytime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from reply
+    where replyid = #{replyid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from reply
+    where replyid = #{replyid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.nuc.ssm.modle.Reply" >
+    insert into reply (replyid, commentid, replyinfo, 
+      prtocid, replytime)
+    values (#{replyid,jdbcType=INTEGER}, #{commentid,jdbcType=INTEGER}, #{replyinfo,jdbcType=VARCHAR}, 
+      #{prtocid,jdbcType=INTEGER}, #{replytime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.modle.Reply" >
+    insert into reply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="replyid != null" >
+        replyid,
+      </if>
+      <if test="commentid != null" >
+        commentid,
+      </if>
+      <if test="replyinfo != null" >
+        replyinfo,
+      </if>
+      <if test="prtocid != null" >
+        prtocid,
+      </if>
+      <if test="replytime != null" >
+        replytime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="replyid != null" >
+        #{replyid,jdbcType=INTEGER},
+      </if>
+      <if test="commentid != null" >
+        #{commentid,jdbcType=INTEGER},
+      </if>
+      <if test="replyinfo != null" >
+        #{replyinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="prtocid != null" >
+        #{prtocid,jdbcType=INTEGER},
+      </if>
+      <if test="replytime != null" >
+        #{replytime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.modle.Reply" >
+    update reply
+    <set >
+      <if test="commentid != null" >
+        commentid = #{commentid,jdbcType=INTEGER},
+      </if>
+      <if test="replyinfo != null" >
+        replyinfo = #{replyinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="prtocid != null" >
+        prtocid = #{prtocid,jdbcType=INTEGER},
+      </if>
+      <if test="replytime != null" >
+        replytime = #{replytime,jdbcType=DATE},
+      </if>
+    </set>
+    where replyid = #{replyid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.modle.Reply" >
+    update reply
+    set commentid = #{commentid,jdbcType=INTEGER},
+      replyinfo = #{replyinfo,jdbcType=VARCHAR},
+      prtocid = #{prtocid,jdbcType=INTEGER},
+      replytime = #{replytime,jdbcType=DATE}
+    where replyid = #{replyid,jdbcType=INTEGER}
+  </update>
+</mapper>

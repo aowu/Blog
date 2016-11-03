@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.nuc.ssm.dao.UserinfoMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.modle.Userinfo" >
+    <id column="infoid" property="infoid" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="usersex" property="usersex" jdbcType="INTEGER" />
+    <result column="introduce" property="introduce" jdbcType="VARCHAR" />
+    <result column="mail" property="mail" jdbcType="VARCHAR" />
+    <result column="birth" property="birth" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    infoid, userid, usersex, introduce, mail, birth
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from userinfo
+    where infoid = #{infoid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from userinfo
+    where infoid = #{infoid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.nuc.ssm.modle.Userinfo" >
+    insert into userinfo (infoid, userid, usersex, 
+      introduce, mail, birth
+      )
+    values (#{infoid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{usersex,jdbcType=INTEGER}, 
+      #{introduce,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR}, #{birth,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.modle.Userinfo" >
+    insert into userinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="infoid != null" >
+        infoid,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="usersex != null" >
+        usersex,
+      </if>
+      <if test="introduce != null" >
+        introduce,
+      </if>
+      <if test="mail != null" >
+        mail,
+      </if>
+      <if test="birth != null" >
+        birth,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="infoid != null" >
+        #{infoid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="usersex != null" >
+        #{usersex,jdbcType=INTEGER},
+      </if>
+      <if test="introduce != null" >
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null" >
+        #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null" >
+        #{birth,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.modle.Userinfo" >
+    update userinfo
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="usersex != null" >
+        usersex = #{usersex,jdbcType=INTEGER},
+      </if>
+      <if test="introduce != null" >
+        introduce = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null" >
+        mail = #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null" >
+        birth = #{birth,jdbcType=DATE},
+      </if>
+    </set>
+    where infoid = #{infoid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.modle.Userinfo" >
+    update userinfo
+    set userid = #{userid,jdbcType=INTEGER},
+      usersex = #{usersex,jdbcType=INTEGER},
+      introduce = #{introduce,jdbcType=VARCHAR},
+      mail = #{mail,jdbcType=VARCHAR},
+      birth = #{birth,jdbcType=DATE}
+    where infoid = #{infoid,jdbcType=INTEGER}
+  </update>
+</mapper>
