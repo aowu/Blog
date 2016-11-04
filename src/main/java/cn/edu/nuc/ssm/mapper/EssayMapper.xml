@@ -19,6 +19,24 @@
     from essay
     where esyid = #{esyid,jdbcType=INTEGER}
   </select>
+  
+  <select id="selectAllEssay" resultType="Essay" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    from essay
+    where userid = #{userid,jdbcType=INTEGER}
+	LIMIT #{start},#{offset}
+  </select>
+  
+   <select id="selectAllCount" resultType="int" parameterType="int">
+    select 
+    count(esyid)
+    from essay
+    where userid = #{userid,jdbcType=INTEGER}
+	
+  </select>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from essay
     where esyid = #{esyid,jdbcType=INTEGER}

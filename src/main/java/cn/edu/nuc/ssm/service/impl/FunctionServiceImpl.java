@@ -1,5 +1,7 @@
 package cn.edu.nuc.ssm.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,5 +21,16 @@ public class FunctionServiceImpl implements FunctionService {
 		
 		return fun;
 	}
+	
+	@Override
+	public List<Function> selectAllFunid() {
+		
+		List<Function> fun = functionMapper.selectALLFunid();
+		System.out.println(fun);
+		
+		return fun;
+	}
+	
+	
 
 }

@@ -72,4 +72,11 @@ public class Essay {
     public void setEsytime(Date esytime) {
         this.esytime = esytime;
     }
+
+	@Override
+	public String toString() {
+		return "Essay [esyid=" + esyid + ", userid=" + userid + ", esyname=" + esyname + ", esysummary=" + esysummary
+				+ ", esyurl=" + esyurl + ", esysta=" + esysta + ", esytime=" + esytime + "]";
+	}
+    
 }

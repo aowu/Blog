@@ -87,21 +87,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				</ul>
 				<a class="brand" href="#"><span class="first">欢迎使用</span> <span
-					class="second">XXX系统</span> </a>
+					class="second">aowude系统</span> </a>
 			</div>
 		</div>
 
 		<div class="sidebar-nav">
-			<c:forEach items="${list}" var="top">
-				<c:if test="${top.funpid==\"-1\"}">
-					<a href="#error-menu${top.funid}" class="nav-header collapsed"
-						data-toggle="collapse">
+			<c:forEach items="${function}" var="top">
+				<c:if test="${top.funpid==\"1\"}">
+					<a href="#error-menu${top.funid}" class="nav-header collapsed" data-toggle="collapse">
 						<i class="icon-briefcase"></i>
 						${top.funname}
 						<i class="icon-chevron-up"></i> 
 					</a>
 					<ul id="error-menu${top.funid}" class="nav nav-list collapse">
-						<c:forEach items="${list}" var="child">
+						<c:forEach items="${function}" var="child">
 							<c:if test="${child.funpid==top.funid}">
 								<li>
 									<a href="<%=basePath%>${child.funurl}">${child.funname}</a>

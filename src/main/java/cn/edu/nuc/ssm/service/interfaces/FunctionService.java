@@ -1,5 +1,7 @@
 package cn.edu.nuc.ssm.service.interfaces;
 
+import java.util.List;
+
 import cn.edu.nuc.ssm.model.Function;
 
 public interface FunctionService {
@@ -10,4 +12,6 @@ public interface FunctionService {
 	 * @return
 	 */
 	Function selectByFunid(Integer funid);
+	
+	List<Function> selectAllFunid();
 }

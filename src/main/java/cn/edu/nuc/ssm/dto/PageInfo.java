@@ -5,9 +5,9 @@ import java.util.List;
 public class PageInfo {
 
 	
-	private int current = 1; 
-	private int count;
-	private int offset = 5;
+	private int current = 1; //当前页数
+	private int count;		//总条数
+	private int offset = 5;	//单页条数
 	private int total;
 	private int start;
 	
@@ -106,4 +106,5 @@ public class PageInfo {
 		return "PageInfo [current=" + current + ", count=" + count + ", offset=" + offset + ", total=" + total
 				+ ", start=" + start + ", list=" + list + "]";
 	}
+	
 }

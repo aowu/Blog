@@ -1,5 +1,7 @@
 package cn.edu.nuc.ssm.service;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,5 +21,12 @@ public class FunctionServiceTest extends BaseTest {
 		
 		System.out.println(fun);
 		
+	}
+	
+	@Test
+	public void selectAllFunid(){
+		
+		List<Function> fun = functionService.selectAllFunid();
+		System.out.println(fun);
 	}
 }
