@@ -1,5 +1,13 @@
 package cn.edu.nuc.ssm.service.impl;
 
+
+
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +36,49 @@ public class EssayServiceImpl implements EssayService {
 		
 		return pi;
 	}
+
+	public int insertEssay(
+			String esyinfo,
+			Integer userid,
+			Essay esy) {
+		
+		//生成esyid
+		int esyid = essayMapper.selectMaxEsyid();
+		esyid++;
+		//存入Essay对象并存入数据库
+		Date now = new Date(); 
+		System.out.println(now);
+		esy.setEsyid(esyid);
+		esy.setUserid(userid);
+		esy.setEsytime(now);
+		esy.setEsysta(1);
+		//生成路径和文件
+		String path = "I:/essay/"+esyid+".txt";
+		esy.setEsyurl(path);
+		int end = essayMapper.insert(esy);
+		
+		//BufferedWriter写入
+			try {
+				File file = new File(path);
+				if(!file.exists()){
+				file.createNewFile();
+				}
+				 FileWriter fw = new FileWriter(file.getAbsoluteFile());
+				   BufferedWriter bw = new BufferedWriter(fw);
+				   bw.write(esyinfo);
+				   bw.flush(); 
+				   bw.close();
+				   fw.close();
+
+	             System.out.println("Done");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		return end;
+	}
+	
+	
 
 }

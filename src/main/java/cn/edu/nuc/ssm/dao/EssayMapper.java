@@ -23,4 +23,6 @@ public interface EssayMapper {
     
     int selectAllCount(Integer userid);
     
+    int selectMaxEsyid();
+    
 }

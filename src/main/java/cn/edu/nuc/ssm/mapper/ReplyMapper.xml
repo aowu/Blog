@@ -6,7 +6,7 @@
     <result column="commentid" property="commentid" jdbcType="INTEGER" />
     <result column="replyinfo" property="replyinfo" jdbcType="VARCHAR" />
     <result column="prtocid" property="prtocid" jdbcType="INTEGER" />
-    <result column="replytime" property="replytime" jdbcType="DATE" />
+    <result column="replytime" property="replytime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
     replyid, commentid, replyinfo, prtocid, replytime
@@ -25,7 +25,7 @@
     insert into reply (replyid, commentid, replyinfo, 
       prtocid, replytime)
     values (#{replyid,jdbcType=INTEGER}, #{commentid,jdbcType=INTEGER}, #{replyinfo,jdbcType=VARCHAR}, 
-      #{prtocid,jdbcType=INTEGER}, #{replytime,jdbcType=DATE})
+      #{prtocid,jdbcType=INTEGER}, #{replytime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.model.Reply" >
     insert into reply
@@ -60,7 +60,7 @@
         #{prtocid,jdbcType=INTEGER},
       </if>
       <if test="replytime != null" >
-        #{replytime,jdbcType=DATE},
+        #{replytime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -77,7 +77,7 @@
         prtocid = #{prtocid,jdbcType=INTEGER},
       </if>
       <if test="replytime != null" >
-        replytime = #{replytime,jdbcType=DATE},
+        replytime = #{replytime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where replyid = #{replyid,jdbcType=INTEGER}
@@ -87,7 +87,7 @@
     set commentid = #{commentid,jdbcType=INTEGER},
       replyinfo = #{replyinfo,jdbcType=VARCHAR},
       prtocid = #{prtocid,jdbcType=INTEGER},
-      replytime = #{replytime,jdbcType=DATE}
+      replytime = #{replytime,jdbcType=TIMESTAMP}
     where replyid = #{replyid,jdbcType=INTEGER}
   </update>
 </mapper>

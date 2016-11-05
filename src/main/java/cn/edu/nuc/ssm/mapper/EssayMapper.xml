@@ -8,7 +8,7 @@
     <result column="esysummary" property="esysummary" jdbcType="VARCHAR" />
     <result column="esyurl" property="esyurl" jdbcType="VARCHAR" />
     <result column="esysta" property="esysta" jdbcType="INTEGER" />
-    <result column="esytime" property="esytime" jdbcType="DATE" />
+    <result column="esytime" property="esytime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
     esyid, userid, esyname, esysummary, esyurl, esysta, esytime
@@ -19,6 +19,13 @@
     from essay
     where esyid = #{esyid,jdbcType=INTEGER}
   </select>
+  
+  <select id="selectMaxEsyid" resultType="int" >
+    SELECT 
+    MAX(esyid) 
+    FROM essay
+  </select>
+  
   
   <select id="selectAllEssay" resultType="Essay" parameterType="java.lang.Integer">
     select 
@@ -47,8 +54,10 @@
       esytime)
     values (#{esyid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{esyname,jdbcType=VARCHAR}, 
       #{esysummary,jdbcType=VARCHAR}, #{esyurl,jdbcType=VARCHAR}, #{esysta,jdbcType=INTEGER}, 
-      #{esytime,jdbcType=DATE})
+      #{esytime,jdbcType=TIMESTAMP})
   </insert>
+  	
+  
   <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.model.Essay" >
     insert into essay
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -94,7 +103,7 @@
         #{esysta,jdbcType=INTEGER},
       </if>
       <if test="esytime != null" >
-        #{esytime,jdbcType=DATE},
+        #{esytime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -117,7 +126,7 @@
         esysta = #{esysta,jdbcType=INTEGER},
       </if>
       <if test="esytime != null" >
-        esytime = #{esytime,jdbcType=DATE},
+        esytime = #{esytime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where esyid = #{esyid,jdbcType=INTEGER}
@@ -129,7 +138,7 @@
       esysummary = #{esysummary,jdbcType=VARCHAR},
       esyurl = #{esyurl,jdbcType=VARCHAR},
       esysta = #{esysta,jdbcType=INTEGER},
-      esytime = #{esytime,jdbcType=DATE}
+      esytime = #{esytime,jdbcType=TIMESTAMP}
     where esyid = #{esyid,jdbcType=INTEGER}
   </update>
 </mapper>

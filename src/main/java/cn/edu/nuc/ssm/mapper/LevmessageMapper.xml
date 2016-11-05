@@ -6,7 +6,7 @@
     <result column="userid" property="userid" jdbcType="INTEGER" />
     <result column="plevmsgid" property="plevmsgid" jdbcType="INTEGER" />
     <result column="levmsginfo" property="levmsginfo" jdbcType="VARCHAR" />
-    <result column="levmsgtime" property="levmsgtime" jdbcType="DATE" />
+    <result column="levmsgtime" property="levmsgtime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
     levmsgeid, userid, plevmsgid, levmsginfo, levmsgtime
@@ -25,7 +25,7 @@
     insert into levmessage (levmsgeid, userid, plevmsgid, 
       levmsginfo, levmsgtime)
     values (#{levmsgeid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{plevmsgid,jdbcType=INTEGER}, 
-      #{levmsginfo,jdbcType=VARCHAR}, #{levmsgtime,jdbcType=DATE})
+      #{levmsginfo,jdbcType=VARCHAR}, #{levmsgtime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.model.Levmessage" >
     insert into levmessage
@@ -60,7 +60,7 @@
         #{levmsginfo,jdbcType=VARCHAR},
       </if>
       <if test="levmsgtime != null" >
-        #{levmsgtime,jdbcType=DATE},
+        #{levmsgtime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -77,7 +77,7 @@
         levmsginfo = #{levmsginfo,jdbcType=VARCHAR},
       </if>
       <if test="levmsgtime != null" >
-        levmsgtime = #{levmsgtime,jdbcType=DATE},
+        levmsgtime = #{levmsgtime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where levmsgeid = #{levmsgeid,jdbcType=INTEGER}
@@ -87,7 +87,7 @@
     set userid = #{userid,jdbcType=INTEGER},
       plevmsgid = #{plevmsgid,jdbcType=INTEGER},
       levmsginfo = #{levmsginfo,jdbcType=VARCHAR},
-      levmsgtime = #{levmsgtime,jdbcType=DATE}
+      levmsgtime = #{levmsgtime,jdbcType=TIMESTAMP}
     where levmsgeid = #{levmsgeid,jdbcType=INTEGER}
   </update>
 </mapper>

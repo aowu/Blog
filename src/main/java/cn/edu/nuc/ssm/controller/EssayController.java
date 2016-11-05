@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.edu.nuc.ssm.dto.PageInfo;
+import cn.edu.nuc.ssm.model.Essay;
 import cn.edu.nuc.ssm.service.interfaces.EssayService;
 
 @Controller
@@ -40,17 +41,31 @@ public class EssayController {
 		return "Essay/Essay";
 		
 	}
-	
-	@RequestMapping(value="/{userid}/addessay",method=RequestMethod.POST)
-	public @ResponseBody String addessay(
+	//写入输出测试
+	@RequestMapping(value="/{userid}/addessaytest",method=RequestMethod.POST)
+	public @ResponseBody String addessaytest(
 			@PathVariable("userid") int userid,
 			HttpSession session,
 			HttpServletRequest request,
 			Model model
 			){
 			String a = request.getParameter("content");
-			
 			return a;
+	}
+	
+	@RequestMapping(value="/{userid}/addessay",method=RequestMethod.POST)
+	public String addessay(
+			@PathVariable("userid") int userid,
+			HttpSession session,
+			HttpServletRequest request,
+			Model model
+			){
+			Essay essay = new Essay();
+			String a = request.getParameter("content");
+			
+			essayService.insertEssay(a, userid, essay);
+			
+			return "redirect:/u/"+userid+"/home";
 			
 	}
 	

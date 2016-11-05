@@ -9,7 +9,7 @@
     <result column="userpas" property="userpas" jdbcType="VARCHAR" />
     <result column="pictureurl" property="pictureurl" jdbcType="VARCHAR" />
     <result column="username" property="username" jdbcType="VARCHAR" />
-    <result column="usertime" property="usertime" jdbcType="DATE" />
+    <result column="usertime" property="usertime" jdbcType="TIMESTAMP" />
     <result column="usersta" property="usersta" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -41,7 +41,7 @@
       )
     values (#{userid,jdbcType=INTEGER}, #{infoid,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, 
       #{usernum,jdbcType=VARCHAR}, #{userpas,jdbcType=VARCHAR}, #{pictureurl,jdbcType=VARCHAR}, 
-      #{username,jdbcType=VARCHAR}, #{usertime,jdbcType=DATE}, #{usersta,jdbcType=INTEGER}
+      #{username,jdbcType=VARCHAR}, #{usertime,jdbcType=TIMESTAMP}, #{usersta,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.model.Users" >
@@ -98,7 +98,7 @@
         #{username,jdbcType=VARCHAR},
       </if>
       <if test="usertime != null" >
-        #{usertime,jdbcType=DATE},
+        #{usertime,jdbcType=TIMESTAMP},
       </if>
       <if test="usersta != null" >
         #{usersta,jdbcType=INTEGER},
@@ -127,7 +127,7 @@
         username = #{username,jdbcType=VARCHAR},
       </if>
       <if test="usertime != null" >
-        usertime = #{usertime,jdbcType=DATE},
+        usertime = #{usertime,jdbcType=TIMESTAMP},
       </if>
       <if test="usersta != null" >
         usersta = #{usersta,jdbcType=INTEGER},
@@ -143,7 +143,7 @@
       userpas = #{userpas,jdbcType=VARCHAR},
       pictureurl = #{pictureurl,jdbcType=VARCHAR},
       username = #{username,jdbcType=VARCHAR},
-      usertime = #{usertime,jdbcType=DATE},
+      usertime = #{usertime,jdbcType=TIMESTAMP},
       usersta = #{usersta,jdbcType=INTEGER}
     where userid = #{userid,jdbcType=INTEGER}
   </update>

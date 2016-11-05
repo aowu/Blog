@@ -7,7 +7,8 @@ import cn.edu.nuc.ssm.model.Essay;
 
 public interface EssayService {
 
-	
 
 	PageInfo selectAllEssay(Integer userid, Integer current);
+
+	int insertEssay(String esyinfo, Integer userid, Essay record);
 }
