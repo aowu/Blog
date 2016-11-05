@@ -5,61 +5,63 @@ import java.util.Date;
 public class Userinfo {
     private Integer infoid;
 
-    private Integer userid;
+	private Integer userid;
 
-    private String usersex;
+	private String usersex;
 
-    private String introduce;
+	private String introduce;
 
-    private String mail;
+	private String mail;
 
-    private Date birth;
+	private Date birth;
 
-    public Integer getInfoid() {
-        return infoid;
-    }
+	public Integer getInfoid() {
+		return infoid;
+	}
 
-    public void setInfoid(Integer infoid) {
-        this.infoid = infoid;
-    }
+	public void setInfoid(Integer infoid) {
+		this.infoid = infoid;
+	}
 
-    public Integer getUserid() {
-        return userid;
-    }
+	public Integer getUserid() {
+		return userid;
+	}
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
-    }
+	public void setUserid(Integer userid) {
+		this.userid = userid;
+	}
 
-    public String getUsersex() {
-        return usersex;
-    }
+	public String getUsersex() {
+		return usersex;
+	}
 
-    public void setUsersex(String usersex) {
-        this.usersex = usersex == null ? null : usersex.trim();
-    }
+	public void setUsersex(String usersex) {
+		this.usersex = usersex == null ? null : usersex.trim();
+	}
 
-    public String getIntroduce() {
-        return introduce;
-    }
+	public String getIntroduce() {
+		return introduce;
+	}
 
-    public void setIntroduce(String introduce) {
-        this.introduce = introduce == null ? null : introduce.trim();
-    }
+	public void setIntroduce(String introduce) {
+		this.introduce = introduce == null ? null : introduce.trim();
+	}
 
-    public String getMail() {
-        return mail;
-    }
+	public String getMail() {
+		return mail;
+	}
 
-    public void setMail(String mail) {
-        this.mail = mail == null ? null : mail.trim();
-    }
+	public void setMail(String mail) {
+		this.mail = mail == null ? null : mail.trim();
+	}
 
-    public Date getBirth() {
-        return birth;
-    }
+	public Date getBirth() {
+		return birth;
+	}
 
-    public void setBirth(Date birth) {
-        this.birth = birth;
-    }
+	public void setBirth(Date birth) {
+		this.birth = birth;
+	}
+
+	
 }

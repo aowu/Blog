@@ -3,7 +3,9 @@ package cn.edu.nuc.ssm.dao;
 import cn.edu.nuc.ssm.model.Reply;
 
 public interface ReplyMapper {
-    int deleteByPrimaryKey(Integer replyid);
+    
+
+	int deleteByPrimaryKey(Integer replyid);
 
     int insert(Reply record);
 

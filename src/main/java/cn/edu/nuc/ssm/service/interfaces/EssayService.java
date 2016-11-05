@@ -9,6 +9,8 @@ public interface EssayService {
 
 
 	PageInfo selectAllEssay(Integer userid, Integer current);
+	
+	String sellectByEsyid(Integer esyid);
 
 	int insertEssay(String esyinfo, Integer userid, Essay record);
 }

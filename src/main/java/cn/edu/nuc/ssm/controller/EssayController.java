@@ -23,7 +23,7 @@ public class EssayController {
 	@Autowired
 	private EssayService essayService;
 	
-	//分页查看文章
+	//分页查看文章列表
 	@RequestMapping(value="/{userid}/home",method=RequestMethod.GET)
 	public String essay(
 			@PathVariable("userid") int userid,
@@ -62,7 +62,8 @@ public class EssayController {
 			){
 			Essay essay = new Essay();
 			String a = request.getParameter("content");
-			
+			String esyname = request.getParameter("esyname");
+			essay.setEsyname(esyname);
 			essayService.insertEssay(a, userid, essay);
 			
 			return "redirect:/u/"+userid+"/home";

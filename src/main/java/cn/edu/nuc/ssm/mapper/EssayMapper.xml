@@ -1,33 +1,34 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.edu.nuc.ssm.dao.EssayMapper" >
-  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.model.Essay" >
-    <id column="esyid" property="esyid" jdbcType="INTEGER" />
-    <result column="userid" property="userid" jdbcType="INTEGER" />
-    <result column="esyname" property="esyname" jdbcType="VARCHAR" />
-    <result column="esysummary" property="esysummary" jdbcType="VARCHAR" />
-    <result column="esyurl" property="esyurl" jdbcType="VARCHAR" />
-    <result column="esysta" property="esysta" jdbcType="INTEGER" />
-    <result column="esytime" property="esytime" jdbcType="TIMESTAMP" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.nuc.ssm.dao.EssayMapper">
+  
+  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.model.Essay">
+    <id column="esyid" jdbcType="INTEGER" property="esyid" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="esyname" jdbcType="VARCHAR" property="esyname" />
+    <result column="esysummary" jdbcType="VARCHAR" property="esysummary" />
+    <result column="esyurl" jdbcType="VARCHAR" property="esyurl" />
+    <result column="esysta" jdbcType="INTEGER" property="esysta" />
+    <result column="esytime" jdbcType="TIMESTAMP" property="esytime" />
   </resultMap>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     esyid, userid, esyname, esysummary, esyurl, esysta, esytime
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from essay
     where esyid = #{esyid,jdbcType=INTEGER}
   </select>
   
-  <select id="selectMaxEsyid" resultType="int" >
+  <select id="selectMaxEsyid" resultType="int">
     SELECT 
     MAX(esyid) 
     FROM essay
   </select>
   
   
-  <select id="selectAllEssay" resultType="Essay" parameterType="java.lang.Integer">
+  <select id="selectAllEssay" parameterType="java.lang.Integer" resultType="Essay">
     select 
     <include refid="Base_Column_List" />
     from essay
@@ -35,7 +36,7 @@
 	LIMIT #{start},#{offset}
   </select>
   
-   <select id="selectAllCount" resultType="int" parameterType="int">
+   <select id="selectAllCount" parameterType="int" resultType="int">
     select 
     count(esyid)
     from essay
@@ -44,11 +45,11 @@
   </select>
   
   
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from essay
     where esyid = #{esyid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.edu.nuc.ssm.model.Essay" >
+  <insert id="insert" parameterType="cn.edu.nuc.ssm.model.Essay">
     insert into essay (esyid, userid, esyname, 
       esysummary, esyurl, esysta, 
       esytime)
@@ -58,80 +59,80 @@
   </insert>
   	
   
-  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.model.Essay" >
+  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.model.Essay">
     insert into essay
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="esyid != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="esyid != null">
         esyid,
       </if>
-      <if test="userid != null" >
+      <if test="userid != null">
         userid,
       </if>
-      <if test="esyname != null" >
+      <if test="esyname != null">
         esyname,
       </if>
-      <if test="esysummary != null" >
+      <if test="esysummary != null">
         esysummary,
       </if>
-      <if test="esyurl != null" >
+      <if test="esyurl != null">
         esyurl,
       </if>
-      <if test="esysta != null" >
+      <if test="esysta != null">
         esysta,
       </if>
-      <if test="esytime != null" >
+      <if test="esytime != null">
         esytime,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="esyid != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="esyid != null">
         #{esyid,jdbcType=INTEGER},
       </if>
-      <if test="userid != null" >
+      <if test="userid != null">
         #{userid,jdbcType=INTEGER},
       </if>
-      <if test="esyname != null" >
+      <if test="esyname != null">
         #{esyname,jdbcType=VARCHAR},
       </if>
-      <if test="esysummary != null" >
+      <if test="esysummary != null">
         #{esysummary,jdbcType=VARCHAR},
       </if>
-      <if test="esyurl != null" >
+      <if test="esyurl != null">
         #{esyurl,jdbcType=VARCHAR},
       </if>
-      <if test="esysta != null" >
+      <if test="esysta != null">
         #{esysta,jdbcType=INTEGER},
       </if>
-      <if test="esytime != null" >
+      <if test="esytime != null">
         #{esytime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.model.Essay" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.model.Essay">
     update essay
-    <set >
-      <if test="userid != null" >
+    <set>
+      <if test="userid != null">
         userid = #{userid,jdbcType=INTEGER},
       </if>
-      <if test="esyname != null" >
+      <if test="esyname != null">
         esyname = #{esyname,jdbcType=VARCHAR},
       </if>
-      <if test="esysummary != null" >
+      <if test="esysummary != null">
         esysummary = #{esysummary,jdbcType=VARCHAR},
       </if>
-      <if test="esyurl != null" >
+      <if test="esyurl != null">
         esyurl = #{esyurl,jdbcType=VARCHAR},
       </if>
-      <if test="esysta != null" >
+      <if test="esysta != null">
         esysta = #{esysta,jdbcType=INTEGER},
       </if>
-      <if test="esytime != null" >
+      <if test="esytime != null">
         esytime = #{esytime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where esyid = #{esyid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.model.Essay" >
+  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.model.Essay">
     update essay
     set userid = #{userid,jdbcType=INTEGER},
       esyname = #{esyname,jdbcType=VARCHAR},

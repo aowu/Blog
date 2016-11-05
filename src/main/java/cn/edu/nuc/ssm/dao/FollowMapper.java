@@ -3,7 +3,9 @@ package cn.edu.nuc.ssm.dao;
 import cn.edu.nuc.ssm.model.Follow;
 
 public interface FollowMapper {
-    int deleteByPrimaryKey(Integer followid);
+   
+
+	int deleteByPrimaryKey(Integer followid);
 
     int insert(Follow record);
 

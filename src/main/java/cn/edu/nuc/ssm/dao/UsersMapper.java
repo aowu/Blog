@@ -3,7 +3,9 @@ package cn.edu.nuc.ssm.dao;
 import cn.edu.nuc.ssm.model.Users;
 
 public interface UsersMapper {
-    int deleteByPrimaryKey(Integer userid);
+    
+
+	int deleteByPrimaryKey(Integer userid);
 
     int insert(Users record);
 

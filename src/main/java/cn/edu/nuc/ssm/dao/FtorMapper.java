@@ -3,7 +3,9 @@ package cn.edu.nuc.ssm.dao;
 import cn.edu.nuc.ssm.model.Ftor;
 
 public interface FtorMapper {
-    int deleteByPrimaryKey(Integer ftorid);
+    
+
+	int deleteByPrimaryKey(Integer ftorid);
 
     int insert(Ftor record);
 

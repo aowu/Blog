@@ -5,73 +5,75 @@ import java.util.Date;
 public class Essay {
     private Integer esyid;
 
-    private Integer userid;
+	private Integer userid;
 
-    private String esyname;
+	private String esyname;
 
-    private String esysummary;
+	private String esysummary;
 
-    private String esyurl;
+	private String esyurl;
 
-    private Integer esysta;
+	private Integer esysta;
 
-    private Date esytime;
+	private Date esytime;
 
-    public Integer getEsyid() {
-        return esyid;
-    }
+	public Integer getEsyid() {
+		return esyid;
+	}
 
-    public void setEsyid(Integer esyid) {
-        this.esyid = esyid;
-    }
+	public void setEsyid(Integer esyid) {
+		this.esyid = esyid;
+	}
 
-    public Integer getUserid() {
-        return userid;
-    }
+	public Integer getUserid() {
+		return userid;
+	}
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
-    }
+	public void setUserid(Integer userid) {
+		this.userid = userid;
+	}
 
-    public String getEsyname() {
-        return esyname;
-    }
+	public String getEsyname() {
+		return esyname;
+	}
 
-    public void setEsyname(String esyname) {
-        this.esyname = esyname == null ? null : esyname.trim();
-    }
+	public void setEsyname(String esyname) {
+		this.esyname = esyname == null ? null : esyname.trim();
+	}
 
-    public String getEsysummary() {
-        return esysummary;
-    }
+	public String getEsysummary() {
+		return esysummary;
+	}
 
-    public void setEsysummary(String esysummary) {
-        this.esysummary = esysummary == null ? null : esysummary.trim();
-    }
+	public void setEsysummary(String esysummary) {
+		this.esysummary = esysummary == null ? null : esysummary.trim();
+	}
 
-    public String getEsyurl() {
-        return esyurl;
-    }
+	public String getEsyurl() {
+		return esyurl;
+	}
 
-    public void setEsyurl(String esyurl) {
-        this.esyurl = esyurl == null ? null : esyurl.trim();
-    }
+	public void setEsyurl(String esyurl) {
+		this.esyurl = esyurl == null ? null : esyurl.trim();
+	}
 
-    public Integer getEsysta() {
-        return esysta;
-    }
+	public Integer getEsysta() {
+		return esysta;
+	}
 
-    public void setEsysta(Integer esysta) {
-        this.esysta = esysta;
-    }
+	public void setEsysta(Integer esysta) {
+		this.esysta = esysta;
+	}
 
-    public Date getEsytime() {
-        return esytime;
-    }
+	public Date getEsytime() {
+		return esytime;
+	}
 
-    public void setEsytime(Date esytime) {
-        this.esytime = esytime;
-    }
+	public void setEsytime(Date esytime) {
+		this.esytime = esytime;
+	}
+
+	
 
 	@Override
 	public String toString() {

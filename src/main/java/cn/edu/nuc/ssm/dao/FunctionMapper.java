@@ -5,7 +5,9 @@ import java.util.List;
 import cn.edu.nuc.ssm.model.Function;
 
 public interface FunctionMapper {
-    int deleteByPrimaryKey(Integer funid);
+    
+
+	int deleteByPrimaryKey(Integer funid);
 
     int insert(Function record);
 

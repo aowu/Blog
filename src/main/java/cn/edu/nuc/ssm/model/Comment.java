@@ -5,61 +5,63 @@ import java.util.Date;
 public class Comment {
     private Integer commentid;
 
-    private Integer funid;
+	private Integer funid;
 
-    private String commentinfo;
+	private String commentinfo;
 
-    private Integer pcommentid;
+	private Integer pcommentid;
 
-    private Date commenttime;
+	private Date commenttime;
 
-    private Integer fcommentid;
+	private Integer fcommentid;
 
-    public Integer getCommentid() {
-        return commentid;
-    }
+	public Integer getCommentid() {
+		return commentid;
+	}
 
-    public void setCommentid(Integer commentid) {
-        this.commentid = commentid;
-    }
+	public void setCommentid(Integer commentid) {
+		this.commentid = commentid;
+	}
 
-    public Integer getFunid() {
-        return funid;
-    }
+	public Integer getFunid() {
+		return funid;
+	}
 
-    public void setFunid(Integer funid) {
-        this.funid = funid;
-    }
+	public void setFunid(Integer funid) {
+		this.funid = funid;
+	}
 
-    public String getCommentinfo() {
-        return commentinfo;
-    }
+	public String getCommentinfo() {
+		return commentinfo;
+	}
 
-    public void setCommentinfo(String commentinfo) {
-        this.commentinfo = commentinfo == null ? null : commentinfo.trim();
-    }
+	public void setCommentinfo(String commentinfo) {
+		this.commentinfo = commentinfo == null ? null : commentinfo.trim();
+	}
 
-    public Integer getPcommentid() {
-        return pcommentid;
-    }
+	public Integer getPcommentid() {
+		return pcommentid;
+	}
 
-    public void setPcommentid(Integer pcommentid) {
-        this.pcommentid = pcommentid;
-    }
+	public void setPcommentid(Integer pcommentid) {
+		this.pcommentid = pcommentid;
+	}
 
-    public Date getCommenttime() {
-        return commenttime;
-    }
+	public Date getCommenttime() {
+		return commenttime;
+	}
 
-    public void setCommenttime(Date commenttime) {
-        this.commenttime = commenttime;
-    }
+	public void setCommenttime(Date commenttime) {
+		this.commenttime = commenttime;
+	}
 
-    public Integer getFcommentid() {
-        return fcommentid;
-    }
+	public Integer getFcommentid() {
+		return fcommentid;
+	}
 
-    public void setFcommentid(Integer fcommentid) {
-        this.fcommentid = fcommentid;
-    }
+	public void setFcommentid(Integer fcommentid) {
+		this.fcommentid = fcommentid;
+	}
+
+	
 }

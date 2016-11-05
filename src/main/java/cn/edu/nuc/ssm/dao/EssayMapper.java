@@ -7,7 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import cn.edu.nuc.ssm.model.Essay;
 
 public interface EssayMapper {
-    int deleteByPrimaryKey(Integer esyid);
+    
+
+	int deleteByPrimaryKey(Integer esyid);
 
     int insert(Essay record);
 

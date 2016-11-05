@@ -5,9 +5,11 @@
     <id column="dataid" property="dataid" jdbcType="INTEGER" />
     <result column="userid" property="userid" jdbcType="INTEGER" />
     <result column="dataurl" property="dataurl" jdbcType="VARCHAR" />
+    <result column="dataname" property="dataname" jdbcType="VARCHAR" />
+    <result column="rdataname" property="rdataname" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    dataid, userid, dataurl
+    dataid, userid, dataurl, dataname, rdataname
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -20,10 +22,10 @@
     where dataid = #{dataid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="cn.edu.nuc.ssm.model.Data" >
-    insert into data (dataid, userid, dataurl
-      )
-    values (#{dataid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{dataurl,jdbcType=VARCHAR}
-      )
+    insert into data (dataid, userid, dataurl, 
+      dataname, rdataname)
+    values (#{dataid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{dataurl,jdbcType=VARCHAR}, 
+      #{dataname,jdbcType=VARCHAR}, #{rdataname,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.model.Data" >
     insert into data
@@ -37,6 +39,12 @@
       <if test="dataurl != null" >
         dataurl,
       </if>
+      <if test="dataname != null" >
+        dataname,
+      </if>
+      <if test="rdataname != null" >
+        rdataname,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="dataid != null" >
@@ -47,6 +55,12 @@
       </if>
       <if test="dataurl != null" >
         #{dataurl,jdbcType=VARCHAR},
+      </if>
+      <if test="dataname != null" >
+        #{dataname,jdbcType=VARCHAR},
+      </if>
+      <if test="rdataname != null" >
+        #{rdataname,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -59,13 +73,21 @@
       <if test="dataurl != null" >
         dataurl = #{dataurl,jdbcType=VARCHAR},
       </if>
+      <if test="dataname != null" >
+        dataname = #{dataname,jdbcType=VARCHAR},
+      </if>
+      <if test="rdataname != null" >
+        rdataname = #{rdataname,jdbcType=VARCHAR},
+      </if>
     </set>
     where dataid = #{dataid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.model.Data" >
     update data
     set userid = #{userid,jdbcType=INTEGER},
-      dataurl = #{dataurl,jdbcType=VARCHAR}
+      dataurl = #{dataurl,jdbcType=VARCHAR},
+      dataname = #{dataname,jdbcType=VARCHAR},
+      rdataname = #{rdataname,jdbcType=VARCHAR}
     where dataid = #{dataid,jdbcType=INTEGER}
   </update>
 </mapper>

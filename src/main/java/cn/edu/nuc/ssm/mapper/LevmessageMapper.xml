@@ -1,88 +1,88 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.edu.nuc.ssm.dao.LevmessageMapper" >
-  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.model.Levmessage" >
-    <id column="levmsgeid" property="levmsgeid" jdbcType="INTEGER" />
-    <result column="userid" property="userid" jdbcType="INTEGER" />
-    <result column="plevmsgid" property="plevmsgid" jdbcType="INTEGER" />
-    <result column="levmsginfo" property="levmsginfo" jdbcType="VARCHAR" />
-    <result column="levmsgtime" property="levmsgtime" jdbcType="TIMESTAMP" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.nuc.ssm.dao.LevmessageMapper">
+  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.model.Levmessage">
+    <id column="levmsgeid" jdbcType="INTEGER" property="levmsgeid" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="plevmsgid" jdbcType="INTEGER" property="plevmsgid" />
+    <result column="levmsginfo" jdbcType="VARCHAR" property="levmsginfo" />
+    <result column="levmsgtime" jdbcType="TIMESTAMP" property="levmsgtime" />
   </resultMap>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     levmsgeid, userid, plevmsgid, levmsginfo, levmsgtime
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from levmessage
     where levmsgeid = #{levmsgeid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from levmessage
     where levmsgeid = #{levmsgeid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.edu.nuc.ssm.model.Levmessage" >
+  <insert id="insert" parameterType="cn.edu.nuc.ssm.model.Levmessage">
     insert into levmessage (levmsgeid, userid, plevmsgid, 
       levmsginfo, levmsgtime)
     values (#{levmsgeid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{plevmsgid,jdbcType=INTEGER}, 
       #{levmsginfo,jdbcType=VARCHAR}, #{levmsgtime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.model.Levmessage" >
+  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.model.Levmessage">
     insert into levmessage
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="levmsgeid != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="levmsgeid != null">
         levmsgeid,
       </if>
-      <if test="userid != null" >
+      <if test="userid != null">
         userid,
       </if>
-      <if test="plevmsgid != null" >
+      <if test="plevmsgid != null">
         plevmsgid,
       </if>
-      <if test="levmsginfo != null" >
+      <if test="levmsginfo != null">
         levmsginfo,
       </if>
-      <if test="levmsgtime != null" >
+      <if test="levmsgtime != null">
         levmsgtime,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="levmsgeid != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="levmsgeid != null">
         #{levmsgeid,jdbcType=INTEGER},
       </if>
-      <if test="userid != null" >
+      <if test="userid != null">
         #{userid,jdbcType=INTEGER},
       </if>
-      <if test="plevmsgid != null" >
+      <if test="plevmsgid != null">
         #{plevmsgid,jdbcType=INTEGER},
       </if>
-      <if test="levmsginfo != null" >
+      <if test="levmsginfo != null">
         #{levmsginfo,jdbcType=VARCHAR},
       </if>
-      <if test="levmsgtime != null" >
+      <if test="levmsgtime != null">
         #{levmsgtime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.model.Levmessage" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.model.Levmessage">
     update levmessage
-    <set >
-      <if test="userid != null" >
+    <set>
+      <if test="userid != null">
         userid = #{userid,jdbcType=INTEGER},
       </if>
-      <if test="plevmsgid != null" >
+      <if test="plevmsgid != null">
         plevmsgid = #{plevmsgid,jdbcType=INTEGER},
       </if>
-      <if test="levmsginfo != null" >
+      <if test="levmsginfo != null">
         levmsginfo = #{levmsginfo,jdbcType=VARCHAR},
       </if>
-      <if test="levmsgtime != null" >
+      <if test="levmsgtime != null">
         levmsgtime = #{levmsgtime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where levmsgeid = #{levmsgeid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.model.Levmessage" >
+  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.model.Levmessage">
     update levmessage
     set userid = #{userid,jdbcType=INTEGER},
       plevmsgid = #{plevmsgid,jdbcType=INTEGER},

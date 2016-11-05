@@ -34,6 +34,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 	<form action="/u/1/addessay" method="post" >
 		<div>
+			文章名<input type="text" name="esyname">
+		</div>
+		<div>
 		<table>
 			<tr>
 				<td>

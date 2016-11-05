@@ -1,88 +1,88 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.edu.nuc.ssm.dao.ReplyMapper" >
-  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.model.Reply" >
-    <id column="replyid" property="replyid" jdbcType="INTEGER" />
-    <result column="commentid" property="commentid" jdbcType="INTEGER" />
-    <result column="replyinfo" property="replyinfo" jdbcType="VARCHAR" />
-    <result column="prtocid" property="prtocid" jdbcType="INTEGER" />
-    <result column="replytime" property="replytime" jdbcType="TIMESTAMP" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.nuc.ssm.dao.ReplyMapper">
+  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.model.Reply">
+    <id column="replyid" jdbcType="INTEGER" property="replyid" />
+    <result column="commentid" jdbcType="INTEGER" property="commentid" />
+    <result column="replyinfo" jdbcType="VARCHAR" property="replyinfo" />
+    <result column="prtocid" jdbcType="INTEGER" property="prtocid" />
+    <result column="replytime" jdbcType="TIMESTAMP" property="replytime" />
   </resultMap>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     replyid, commentid, replyinfo, prtocid, replytime
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from reply
     where replyid = #{replyid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from reply
     where replyid = #{replyid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.edu.nuc.ssm.model.Reply" >
+  <insert id="insert" parameterType="cn.edu.nuc.ssm.model.Reply">
     insert into reply (replyid, commentid, replyinfo, 
       prtocid, replytime)
     values (#{replyid,jdbcType=INTEGER}, #{commentid,jdbcType=INTEGER}, #{replyinfo,jdbcType=VARCHAR}, 
       #{prtocid,jdbcType=INTEGER}, #{replytime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.model.Reply" >
+  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.model.Reply">
     insert into reply
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="replyid != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="replyid != null">
         replyid,
       </if>
-      <if test="commentid != null" >
+      <if test="commentid != null">
         commentid,
       </if>
-      <if test="replyinfo != null" >
+      <if test="replyinfo != null">
         replyinfo,
       </if>
-      <if test="prtocid != null" >
+      <if test="prtocid != null">
         prtocid,
       </if>
-      <if test="replytime != null" >
+      <if test="replytime != null">
         replytime,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="replyid != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="replyid != null">
         #{replyid,jdbcType=INTEGER},
       </if>
-      <if test="commentid != null" >
+      <if test="commentid != null">
         #{commentid,jdbcType=INTEGER},
       </if>
-      <if test="replyinfo != null" >
+      <if test="replyinfo != null">
         #{replyinfo,jdbcType=VARCHAR},
       </if>
-      <if test="prtocid != null" >
+      <if test="prtocid != null">
         #{prtocid,jdbcType=INTEGER},
       </if>
-      <if test="replytime != null" >
+      <if test="replytime != null">
         #{replytime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.model.Reply" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.model.Reply">
     update reply
-    <set >
-      <if test="commentid != null" >
+    <set>
+      <if test="commentid != null">
         commentid = #{commentid,jdbcType=INTEGER},
       </if>
-      <if test="replyinfo != null" >
+      <if test="replyinfo != null">
         replyinfo = #{replyinfo,jdbcType=VARCHAR},
       </if>
-      <if test="prtocid != null" >
+      <if test="prtocid != null">
         prtocid = #{prtocid,jdbcType=INTEGER},
       </if>
-      <if test="replytime != null" >
+      <if test="replytime != null">
         replytime = #{replytime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where replyid = #{replyid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.model.Reply" >
+  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.model.Reply">
     update reply
     set commentid = #{commentid,jdbcType=INTEGER},
       replyinfo = #{replyinfo,jdbcType=VARCHAR},

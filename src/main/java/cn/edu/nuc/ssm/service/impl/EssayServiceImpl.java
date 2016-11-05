@@ -37,6 +37,10 @@ public class EssayServiceImpl implements EssayService {
 		return pi;
 	}
 
+	/**
+	 * 将文章key写入数据库
+	 * 文章写入服务器
+	 */
 	public int insertEssay(
 			String esyinfo,
 			Integer userid,
@@ -77,6 +81,12 @@ public class EssayServiceImpl implements EssayService {
 			}
 		
 		return end;
+	}
+
+	@Override
+	public String sellectByEsyid(Integer esyid) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

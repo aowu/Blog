@@ -7,6 +7,10 @@ public class Data {
 
     private String dataurl;
 
+    private String dataname;
+
+    private String rdataname;
+
     public Integer getDataid() {
         return dataid;
     }
@@ -29,5 +33,21 @@ public class Data {
 
     public void setDataurl(String dataurl) {
         this.dataurl = dataurl == null ? null : dataurl.trim();
+    }
+
+    public String getDataname() {
+        return dataname;
+    }
+
+    public void setDataname(String dataname) {
+        this.dataname = dataname == null ? null : dataname.trim();
+    }
+
+    public String getRdataname() {
+        return rdataname;
+    }
+
+    public void setRdataname(String rdataname) {
+        this.rdataname = rdataname == null ? null : rdataname.trim();
     }
 }
