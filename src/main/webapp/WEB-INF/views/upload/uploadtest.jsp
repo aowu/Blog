@@ -13,7 +13,9 @@
     <input type="file" name="file2" /> <input type="text" name="alais" /><br />  
     <input type="file" name="file3" /> <input type="text" name="alais" /><br />  
     <input type="submit" value="上传" />  
-</form>  
+</form>
+
+  
 
 </body>
 </html>

@@ -3,11 +3,19 @@ package cn.edu.nuc.ssm.util;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -48,7 +56,7 @@ public class FileOperateUtil {
     
     
     
-    public static void upload(
+    public static List<Data> upload(
     		HttpServletRequest request
     		) throws IOException{
     	
@@ -69,7 +77,9 @@ public class FileOperateUtil {
              file.mkdir();  
          }  
          
-         String fileName = null;  
+         String fileName = null;
+         Data data = new Data();
+         List<Data> list = new ArrayList<>();
          
          for (Map.Entry<String, MultipartFile> it : fileMap.entrySet()) {  
          
@@ -87,10 +97,39 @@ public class FileOperateUtil {
         	 FileCopyUtils.copy(mFile.getBytes(), uploadFile);
         	 
         	 System.out.println("上传地址为"+uploadDir);
+        	 
+        	 data.setDataurl(uploadDir+storeName);
+        	 
+        	 data.setDataname(storeName);
+        	 
+        	 data.setRdataname(fileName);
+        	 
+        	 list.add(data);
+        	 
         	 }
          }
+		return list;
          
     }
+    
+    
+    
+    	public static ResponseEntity<byte[]> download(Data data) throws IOException{
+		
+		File file=new File(data.getDataurl());
+		//处理显示中文文件名的问题
+		String fileName = new String(file.getName().getBytes("utf-8"),"utf-8");
+		
+		//设置请求头内容，告诉浏览器代开下载窗口
+		HttpHeaders headers = new HttpHeaders();
+		
+		headers.setContentDispositionFormData("attachment",fileName );
+		//头部设置文件类型
+		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+		
+		return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file),    
+                headers, HttpStatus.CREATED); 
+	}
     
     
 }
