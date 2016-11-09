@@ -4,6 +4,7 @@ import cn.edu.nuc.ssm.model.Userinfo;
 
 public interface UserinfoMapper {
     
+	/*-------------------放覆盖护体盾--------------------------*/
 
 	int deleteByPrimaryKey(Integer infoid);
 
@@ -16,4 +17,6 @@ public interface UserinfoMapper {
     int updateByPrimaryKeySelective(Userinfo record);
 
     int updateByPrimaryKey(Userinfo record);
+    
+    /*-------------------放覆盖护体盾--------------------------*/
 }

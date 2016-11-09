@@ -97,7 +97,7 @@
 		<version>${jackson.json.version}</version>
 	</dependency>
 	<!-- jackson xml -->
-	<dependency>
+	<!-- <dependency>
 		<groupId>com.fasterxml.jackson.dataformat</groupId>
 		<artifactId>jackson-dataformat-xml</artifactId>
 		<version>${fasterxml.jackson.version}</version>
@@ -106,7 +106,20 @@
 		<groupId>org.codehaus.woodstox</groupId>
 		<artifactId>woodstox-core-asl</artifactId>
 		<version>${codehaus.woodstox.version}</version>
+	</dependency> -->
+	
+	<!-- jackson json -->
+	 <dependency>
+    	<groupId>org.codehaus.jackson</groupId>
+    	<artifactId>jackson-mapper-asl</artifactId>
+    	<version>1.9.13</version>
 	</dependency>
+	
+	<dependency>
+	    <groupId>org.codehaus.jackson</groupId>
+	    <artifactId>jackson-core-asl</artifactId>
+	    <version>1.9.13</version>
+	</dependency> 
 	
 	<dependency>
 	    <groupId>org.hibernate</groupId>

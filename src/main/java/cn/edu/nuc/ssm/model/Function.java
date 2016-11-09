@@ -1,6 +1,8 @@
 package cn.edu.nuc.ssm.model;
 
 public class Function {
+	
+	/*---------------------防覆盖护体盾-------------------------*/
     private Integer funid;
 
 	private String funname;
@@ -67,5 +69,7 @@ public class Function {
 		return "Function [funid=" + funid + ", funname=" + funname + ", funurl=" + funurl + ", funsta=" + funsta
 				+ ", funpid=" + funpid + ", funpname=" + funpname + "]";
 	}
+	
+	/*---------------------防覆盖护体盾-------------------------*/
     
 }

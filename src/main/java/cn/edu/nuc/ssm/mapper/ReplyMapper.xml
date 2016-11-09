@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.nuc.ssm.dao.ReplyMapper">
+
+<!-- +++++++++++++++++++++++++++++++防覆盖护体盾+++++++++++++++++++++++++++++++++++++++ -->
   <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.model.Reply">
     <id column="replyid" jdbcType="INTEGER" property="replyid" />
     <result column="commentid" jdbcType="INTEGER" property="commentid" />
     <result column="replyinfo" jdbcType="VARCHAR" property="replyinfo" />
-    <result column="prtocid" jdbcType="INTEGER" property="prtocid" />
+    <result column="preplyid" jdbcType="INTEGER" property="preplyid" />
     <result column="replytime" jdbcType="TIMESTAMP" property="replytime" />
+    <result column="freplyid" jdbcType="INTEGER" property="freplyid" />
+  </resultMap>
+  
+  <resultMap id="SuperResultMap" type="cn.edu.nuc.ssm.model.SuperReply">
+    <id column="replyid" jdbcType="INTEGER" property="replyid" />
+    <result column="commentid" jdbcType="INTEGER" property="commentid" />
+    <result column="replyinfo" jdbcType="VARCHAR" property="replyinfo" />
+    <result column="preplyid" jdbcType="INTEGER" property="preplyid" />
+    <result column="preplyname" jdbcType="VARCHAR" property="preplyname"/>
+    <result column="ppictureurl" jdbcType="VARCHAR" property="ppictureurl"/>
+    <result column="replytime" jdbcType="TIMESTAMP" property="replytime" />
+    <result column="freplyid" jdbcType="INTEGER" property="freplyid" />
+    <result column="freplyname" jdbcType="VARCHAR" property="freplyname"/>
+    <result column="fpictureurl" jdbcType="VARCHAR" property="fpictureurl"/>
   </resultMap>
   <sql id="Base_Column_List">
-    replyid, commentid, replyinfo, prtocid, replytime
+    replyid, commentid, replyinfo, preplyid, replytime, freplyid
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -17,15 +33,52 @@
     from reply
     where replyid = #{replyid,jdbcType=INTEGER}
   </select>
+  
+  <select id="selectAllCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+	select 
+  	count(replyid)
+  	from reply
+  	where commentid = #{commentid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectAllByCommentid" parameterType="java.lang.Integer" resultType="Reply">
+  	select
+  	<include refid="Base_Column_List" />
+  	from reply
+  	where commentid = #{commentid,jdbcType=INTEGER}
+  	group by replytime
+  	LIMIT #{start},#{offset}
+  </select>
+  
+  <select id="SuperSelectReply"  parameterType="java.lang.Integer" resultMap="SuperResultMap">
+  select 
+	a.commentid, a.replyinfo, a.preplyid,(b.username)AS preplyname, (b.pictureurl)AS ppictureurl, 
+	a.replytime, a.freplyid, (c.username)AS freplyname, (c.pictureurl)AS fpictureurl
+	from
+	reply a,
+	users b,
+	users c
+	WHERE 
+	a.commentid = #{commentid,jdbcType=INTEGER}
+	AND
+	a.preplyid = b.userid
+	AND
+	a.freplyid = c.userid
+	GROUP BY a.replytime 
+  </select>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from reply
     where replyid = #{replyid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="cn.edu.nuc.ssm.model.Reply">
     insert into reply (replyid, commentid, replyinfo, 
-      prtocid, replytime)
+      preplyid, replytime, freplyid
+      )
     values (#{replyid,jdbcType=INTEGER}, #{commentid,jdbcType=INTEGER}, #{replyinfo,jdbcType=VARCHAR}, 
-      #{prtocid,jdbcType=INTEGER}, #{replytime,jdbcType=TIMESTAMP})
+      #{preplyid,jdbcType=INTEGER}, #{replytime,jdbcType=TIMESTAMP}, #{freplyid,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.model.Reply">
     insert into reply
@@ -39,11 +92,14 @@
       <if test="replyinfo != null">
         replyinfo,
       </if>
-      <if test="prtocid != null">
-        prtocid,
+      <if test="preplyid != null">
+        preplyid,
       </if>
       <if test="replytime != null">
         replytime,
+      </if>
+      <if test="freplyid != null">
+        freplyid,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -56,11 +112,14 @@
       <if test="replyinfo != null">
         #{replyinfo,jdbcType=VARCHAR},
       </if>
-      <if test="prtocid != null">
-        #{prtocid,jdbcType=INTEGER},
+      <if test="preplyid != null">
+        #{preplyid,jdbcType=INTEGER},
       </if>
       <if test="replytime != null">
         #{replytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="freplyid != null">
+        #{freplyid,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -73,11 +132,14 @@
       <if test="replyinfo != null">
         replyinfo = #{replyinfo,jdbcType=VARCHAR},
       </if>
-      <if test="prtocid != null">
-        prtocid = #{prtocid,jdbcType=INTEGER},
+      <if test="preplyid != null">
+        preplyid = #{preplyid,jdbcType=INTEGER},
       </if>
       <if test="replytime != null">
         replytime = #{replytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="freplyid != null">
+        freplyid = #{freplyid,jdbcType=INTEGER},
       </if>
     </set>
     where replyid = #{replyid,jdbcType=INTEGER}
@@ -86,8 +148,13 @@
     update reply
     set commentid = #{commentid,jdbcType=INTEGER},
       replyinfo = #{replyinfo,jdbcType=VARCHAR},
-      prtocid = #{prtocid,jdbcType=INTEGER},
-      replytime = #{replytime,jdbcType=TIMESTAMP}
+      preplyid = #{preplyid,jdbcType=INTEGER},
+      replytime = #{replytime,jdbcType=TIMESTAMP},
+      freplyid = #{freplyid,jdbcType=INTEGER}
     where replyid = #{replyid,jdbcType=INTEGER}
   </update>
+
+<!-- +++++++++++++++++++++++++++++++防覆盖护体盾+++++++++++++++++++++++++++++++++++++++ -->
+  
+
 </mapper>

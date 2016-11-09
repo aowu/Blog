@@ -1,6 +1,10 @@
 package cn.edu.nuc.ssm.model;
 
 public class Data {
+	
+
+
+	/*---------------------防覆盖护体盾-------------------------*/
     private Integer dataid;
 
     private Integer userid;
@@ -50,4 +54,6 @@ public class Data {
     public void setRdataname(String rdataname) {
         this.rdataname = rdataname == null ? null : rdataname.trim();
     }
+    
+    /*---------------------防覆盖护体盾-------------------------*/
 }

@@ -4,7 +4,7 @@ import cn.edu.nuc.ssm.model.Users;
 
 public interface UsersMapper {
     
-
+/*-------------------放覆盖护体盾--------------------------*/
 	int deleteByPrimaryKey(Integer userid);
 
     int insert(Users record);
@@ -18,4 +18,6 @@ public interface UsersMapper {
     int updateByPrimaryKey(Users record);
     
     Users selectByUsernum(String usernum);
+    
+    /*-------------------放覆盖护体盾--------------------------*/
 }

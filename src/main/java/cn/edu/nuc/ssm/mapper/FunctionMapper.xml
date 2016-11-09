@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.nuc.ssm.dao.FunctionMapper">
+
+<!-- +++++++++++++++++++++++++++++++防覆盖护体盾+++++++++++++++++++++++++++++++++++++++ -->
   <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.model.Function">
     <id column="funid" jdbcType="INTEGER" property="funid" />
     <result column="funname" jdbcType="VARCHAR" property="funname" />
@@ -112,4 +114,5 @@
       funpname = #{funpname,jdbcType=VARCHAR}
     where funid = #{funid,jdbcType=INTEGER}
   </update>
+  <!-- +++++++++++++++++++++++++++++++防覆盖护体盾+++++++++++++++++++++++++++++++++++++++ -->
 </mapper>

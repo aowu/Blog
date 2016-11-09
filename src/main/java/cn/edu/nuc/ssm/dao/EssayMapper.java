@@ -8,6 +8,8 @@ import cn.edu.nuc.ssm.model.Essay;
 
 public interface EssayMapper {
     
+	
+	/*-------------------放覆盖护体盾--------------------------*/
 
 	int deleteByPrimaryKey(Integer esyid);
 
@@ -26,5 +28,7 @@ public interface EssayMapper {
     int selectAllCount(Integer userid);
     
     int selectMaxEsyid();
+    
+    /*-------------------放覆盖护体盾--------------------------*/
     
 }

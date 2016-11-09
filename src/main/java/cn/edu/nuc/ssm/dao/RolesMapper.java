@@ -4,6 +4,8 @@ import cn.edu.nuc.ssm.model.Roles;
 
 public interface RolesMapper {
    
+	
+	/*-------------------放覆盖护体盾--------------------------*/
 
 	int deleteByPrimaryKey(Integer roleid);
 
@@ -16,4 +18,6 @@ public interface RolesMapper {
     int updateByPrimaryKeySelective(Roles record);
 
     int updateByPrimaryKey(Roles record);
+    
+    /*-------------------放覆盖护体盾--------------------------*/
 }

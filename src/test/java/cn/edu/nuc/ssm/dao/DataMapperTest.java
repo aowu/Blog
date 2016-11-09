@@ -1,5 +1,7 @@
 package cn.edu.nuc.ssm.dao;
 
+import java.util.Date;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,5 +19,12 @@ public class DataMapperTest extends BaseTest {
 		Data data = new Data();
 		data.setUserid(1);
 		dataMapper.insert(data);
+	}
+	
+	@Test
+	public void test2(){
+		
+		Date date = new Date();
+		System.out.println(date);
 	}
 }

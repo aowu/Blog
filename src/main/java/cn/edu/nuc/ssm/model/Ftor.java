@@ -1,6 +1,8 @@
 package cn.edu.nuc.ssm.model;
 
 public class Ftor {
+	
+	/*---------------------防覆盖护体盾-------------------------*/
     private Integer ftorid;
 
 	private Integer funid;
@@ -31,5 +33,7 @@ public class Ftor {
 		this.roleid = roleid;
 	}
 
+	
+	/*---------------------防覆盖护体盾-------------------------*/
 	
 }

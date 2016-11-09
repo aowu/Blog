@@ -1,6 +1,8 @@
 package cn.edu.nuc.ssm.model;
 
 public class Follow {
+	
+	/*---------------------防覆盖护体盾-------------------------*/
     private Integer followid;
 
 	private Integer userid;
@@ -41,5 +43,7 @@ public class Follow {
 		this.followsta = followsta;
 	}
 
+	
+	/*---------------------防覆盖护体盾-------------------------*/
 	
 }

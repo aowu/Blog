@@ -6,6 +6,8 @@ import cn.edu.nuc.ssm.model.Function;
 
 public interface FunctionMapper {
     
+	
+	/*-------------------放覆盖护体盾--------------------------*/
 
 	int deleteByPrimaryKey(Integer funid);
 
@@ -20,4 +22,6 @@ public interface FunctionMapper {
     int updateByPrimaryKey(Function record);
     
 	List<Function> selectALLFunid();
+	
+	/*-------------------放覆盖护体盾--------------------------*/
 }

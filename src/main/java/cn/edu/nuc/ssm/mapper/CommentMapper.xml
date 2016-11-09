@@ -2,14 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.nuc.ssm.dao.CommentMapper">
   
+  
+  <!-- +++++++++++++++++++++++++++++++防覆盖护体盾+++++++++++++++++++++++++++++++++++++++ -->
   <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.model.Comment">
     <id column="commentid" jdbcType="INTEGER" property="commentid" />
     <result column="funid" jdbcType="INTEGER" property="funid" />
     <result column="commentinfo" jdbcType="VARCHAR" property="commentinfo" />
     <result column="pcommentid" jdbcType="INTEGER" property="pcommentid" />
-    <result column="commenttime" jdbcType="DATE" property="commenttime" />
+    <result column="commenttime" jdbcType="TIMESTAMP" property="commenttime" />
     <result column="fcommentid" jdbcType="INTEGER" property="fcommentid" />
   </resultMap>
+  <resultMap id="SuperResultMap" type="cn.edu.nuc.ssm.model.SuperComment">
+  	<id column="commentid" jdbcType="INTEGER" property="commentid" />
+    <result column="funid" jdbcType="INTEGER" property="funid" />
+    <result column="commentinfo" jdbcType="VARCHAR" property="commentinfo" />
+    <result column="pcommentid" jdbcType="INTEGER" property="pcommentid" />
+    <result column="commenttime" jdbcType="TIMESTAMP" property="commenttime" />
+    <result column="fcommentid" jdbcType="INTEGER" property="fcommentid" />
+  	<result column="fcommentname" jdbcType="VARCHAR" property="fcommentname"/>
+  	<result column="fpictureurl" jdbcType="VARCHAR" property="fpictureurl"/>
+  </resultMap>
+  
   <sql id="Base_Column_List">
     commentid, funid, commentinfo, pcommentid, commenttime, fcommentid
   </sql>
@@ -19,6 +32,38 @@
     from comment
     where commentid = #{commentid,jdbcType=INTEGER}
   </select>
+  
+  <!-- 分页 -->
+  <select id="selectByUserid" parameterType="java.lang.Integer" resultType="Comment">
+    	select 
+    	<include refid="Base_Column_List" />
+    	from comment
+    	where pcommentid = #{pcommentid,jdbcType=INTEGER}
+    	group by commenttime desc
+		LIMIT #{start},#{offset}
+  	</select>
+  	
+  	<select id="superSelectComment" parameterType="java.lang.Integer" resultType="cn.edu.nuc.ssm.model.SuperComment">
+  		SELECT 
+			a.commentid, a.funid, a.commentinfo, a.pcommentid, a.commenttime ,a.fcommentid, 
+			(b.username)as fcommentname, (b.pictureurl)as fpictureurl
+			from
+			comment a, users b
+			where a.pcommentid = #{pcommentid,jdbcType=INTEGER} 
+			and a.fcommentid = b.userid
+			group by a.commenttime desc
+  			LIMIT #{start},#{offset}
+  	</select>
+  	
+  <select id="selectAllCount" parameterType="int" resultType="int">
+    select 
+    count(commentid)
+    from comment
+    where pcommentid = #{pcommentid,jdbcType=INTEGER}
+	
+  </select>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from comment
     where commentid = #{commentid,jdbcType=INTEGER}
@@ -28,9 +73,24 @@
       pcommentid, commenttime, fcommentid
       )
     values (#{commentid,jdbcType=INTEGER}, #{funid,jdbcType=INTEGER}, #{commentinfo,jdbcType=VARCHAR}, 
-      #{pcommentid,jdbcType=INTEGER}, #{commenttime,jdbcType=DATE}, #{fcommentid,jdbcType=INTEGER}
+      #{pcommentid,jdbcType=INTEGER}, #{commenttime,jdbcType=TIMESTAMP}, #{fcommentid,jdbcType=INTEGER}
       )
   </insert>
+  
+  <insert id="insertNoCommentid" parameterType="cn.edu.nuc.ssm.model.Comment">
+  	insert into comment (
+  	commentinfo, 
+  	pcommentid, 
+  	commenttime, 
+  	fcommentid)
+  	values
+  	(#{commentinfo,jdbcType=VARCHAR}, 
+      #{pcommentid,jdbcType=INTEGER}, 
+      #{commenttime,jdbcType=TIMESTAMP}, 
+      #{fcommentid,jdbcType=INTEGER})
+  
+  </insert>
+  
   <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.model.Comment">
     insert into comment
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -67,7 +127,7 @@
         #{pcommentid,jdbcType=INTEGER},
       </if>
       <if test="commenttime != null">
-        #{commenttime,jdbcType=DATE},
+        #{commenttime,jdbcType=TIMESTAMP},
       </if>
       <if test="fcommentid != null">
         #{fcommentid,jdbcType=INTEGER},
@@ -87,7 +147,7 @@
         pcommentid = #{pcommentid,jdbcType=INTEGER},
       </if>
       <if test="commenttime != null">
-        commenttime = #{commenttime,jdbcType=DATE},
+        commenttime = #{commenttime,jdbcType=TIMESTAMP},
       </if>
       <if test="fcommentid != null">
         fcommentid = #{fcommentid,jdbcType=INTEGER},
@@ -100,8 +160,10 @@
     set funid = #{funid,jdbcType=INTEGER},
       commentinfo = #{commentinfo,jdbcType=VARCHAR},
       pcommentid = #{pcommentid,jdbcType=INTEGER},
-      commenttime = #{commenttime,jdbcType=DATE},
+      commenttime = #{commenttime,jdbcType=TIMESTAMP},
       fcommentid = #{fcommentid,jdbcType=INTEGER}
     where commentid = #{commentid,jdbcType=INTEGER}
   </update>
+  
+  <!-- +++++++++++++++++++++++++++++++防覆盖护体盾+++++++++++++++++++++++++++++++++++++++ -->
 </mapper>

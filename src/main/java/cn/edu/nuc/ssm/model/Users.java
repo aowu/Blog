@@ -3,6 +3,8 @@ package cn.edu.nuc.ssm.model;
 import java.util.Date;
 
 public class Users {
+	
+/*---------------------防覆盖护体盾-------------------------*/
     private Integer userid;
 
 	private Integer infoid;
@@ -92,6 +94,8 @@ public class Users {
 	public void setUsersta(Integer usersta) {
 		this.usersta = usersta;
 	}
+	
+	/*---------------------防覆盖护体盾-------------------------*/
 
 	
 }

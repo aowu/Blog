@@ -1,6 +1,8 @@
 package cn.edu.nuc.ssm.model;
 
 public class Roles {
+	
+	/*---------------------防覆盖护体盾-------------------------*/
     private Integer roleid;
 
 	private String rolename;
@@ -41,5 +43,5 @@ public class Roles {
 		this.roleinfo = roleinfo == null ? null : roleinfo.trim();
 	}
 
-	
+	/*---------------------防覆盖护体盾-------------------------*/
 }

@@ -4,6 +4,8 @@ import cn.edu.nuc.ssm.model.Follow;
 
 public interface FollowMapper {
    
+	
+	/*-------------------放覆盖护体盾--------------------------*/
 
 	int deleteByPrimaryKey(Integer followid);
 
@@ -16,4 +18,6 @@ public interface FollowMapper {
     int updateByPrimaryKeySelective(Follow record);
 
     int updateByPrimaryKey(Follow record);
+    
+    /*-------------------放覆盖护体盾--------------------------*/
 }

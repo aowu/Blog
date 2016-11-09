@@ -2,6 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.nuc.ssm.dao.EssayMapper">
   
+  
+  <!-- +++++++++++++++++++++++++++++++防覆盖护体盾+++++++++++++++++++++++++++++++++++++++ -->
   <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.model.Essay">
     <id column="esyid" jdbcType="INTEGER" property="esyid" />
     <result column="userid" jdbcType="INTEGER" property="userid" />
@@ -21,12 +23,14 @@
     where esyid = #{esyid,jdbcType=INTEGER}
   </select>
   
+  <!-- 查询esyid最大值 -->
   <select id="selectMaxEsyid" resultType="int">
     SELECT 
     MAX(esyid) 
     FROM essay
   </select>
   
+  <!-- 分页 -->
   
   <select id="selectAllEssay" parameterType="java.lang.Integer" resultType="Essay">
     select 
@@ -36,6 +40,7 @@
 	LIMIT #{start},#{offset}
   </select>
   
+  <!-- 查询数量 -->
    <select id="selectAllCount" parameterType="int" resultType="int">
     select 
     count(esyid)
@@ -142,4 +147,6 @@
       esytime = #{esytime,jdbcType=TIMESTAMP}
     where esyid = #{esyid,jdbcType=INTEGER}
   </update>
+  
+  <!-- +++++++++++++++++++++++++++++++防覆盖护体盾+++++++++++++++++++++++++++++++++++++++ -->
 </mapper>

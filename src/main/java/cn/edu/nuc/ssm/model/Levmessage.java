@@ -3,6 +3,8 @@ package cn.edu.nuc.ssm.model;
 import java.util.Date;
 
 public class Levmessage {
+	
+	/*---------------------防覆盖护体盾-------------------------*/
     private Integer levmsgeid;
 
 	private Integer userid;
@@ -53,5 +55,7 @@ public class Levmessage {
 		this.levmsgtime = levmsgtime;
 	}
 
+	
+	/*---------------------防覆盖护体盾-------------------------*/
 	
 }

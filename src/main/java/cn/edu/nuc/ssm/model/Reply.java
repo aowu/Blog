@@ -3,15 +3,20 @@ package cn.edu.nuc.ssm.model;
 import java.util.Date;
 
 public class Reply {
-    private Integer replyid;
+	
+	/*---------------------防覆盖护体盾-------------------------*/
+	
+	private Integer replyid;
 
 	private Integer commentid;
 
 	private String replyinfo;
 
-	private Integer prtocid;
+	private Integer preplyid;
 
 	private Date replytime;
+
+	private Integer freplyid;
 
 	public Integer getReplyid() {
 		return replyid;
@@ -37,12 +42,12 @@ public class Reply {
 		this.replyinfo = replyinfo == null ? null : replyinfo.trim();
 	}
 
-	public Integer getPrtocid() {
-		return prtocid;
+	public Integer getPreplyid() {
+		return preplyid;
 	}
 
-	public void setPrtocid(Integer prtocid) {
-		this.prtocid = prtocid;
+	public void setPreplyid(Integer preplyid) {
+		this.preplyid = preplyid;
 	}
 
 	public Date getReplytime() {
@@ -53,5 +58,24 @@ public class Reply {
 		this.replytime = replytime;
 	}
 
+	public Integer getFreplyid() {
+		return freplyid;
+	}
+
+	public void setFreplyid(Integer freplyid) {
+		this.freplyid = freplyid;
+	}
+
+	@Override
+	public String toString() {
+		return "Reply [replyid=" + replyid + ", commentid=" + commentid + ", replyinfo=" + replyinfo + ", preplyid="
+				+ preplyid + ", replytime=" + replytime + ", freplyid=" + freplyid + "]";
+	}
+
+	
+    
+
+	
+	/*---------------------防覆盖护体盾-------------------------*/
 	
 }

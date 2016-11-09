@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.nuc.ssm.dao.UserinfoMapper">
+
+<!-- +++++++++++++++++++++++++++++++防覆盖护体盾+++++++++++++++++++++++++++++++++++++++ -->
   <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.model.Userinfo">
     <id column="infoid" jdbcType="INTEGER" property="infoid" />
     <result column="userid" jdbcType="INTEGER" property="userid" />
@@ -103,4 +105,6 @@
       birth = #{birth,jdbcType=DATE}
     where infoid = #{infoid,jdbcType=INTEGER}
   </update>
+  
+  <!-- +++++++++++++++++++++++++++++++防覆盖护体盾+++++++++++++++++++++++++++++++++++++++ -->
 </mapper>

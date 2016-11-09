@@ -3,6 +3,8 @@ package cn.edu.nuc.ssm.model;
 import java.util.Date;
 
 public class Essay {
+	
+	/*---------------------防覆盖护体盾-------------------------*/
     private Integer esyid;
 
 	private Integer userid;
@@ -80,5 +82,7 @@ public class Essay {
 		return "Essay [esyid=" + esyid + ", userid=" + userid + ", esyname=" + esyname + ", esysummary=" + esysummary
 				+ ", esyurl=" + esyurl + ", esysta=" + esysta + ", esytime=" + esytime + "]";
 	}
+	
+	/*---------------------防覆盖护体盾-------------------------*/
     
 }

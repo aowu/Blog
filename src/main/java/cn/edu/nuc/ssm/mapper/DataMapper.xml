@@ -1,88 +1,92 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.edu.nuc.ssm.dao.DataMapper" >
-  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.model.Data" >
-    <id column="dataid" property="dataid" jdbcType="INTEGER" />
-    <result column="userid" property="userid" jdbcType="INTEGER" />
-    <result column="dataurl" property="dataurl" jdbcType="VARCHAR" />
-    <result column="dataname" property="dataname" jdbcType="VARCHAR" />
-    <result column="rdataname" property="rdataname" jdbcType="VARCHAR" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.nuc.ssm.dao.DataMapper">
+  
+  
+
+<!-- +++++++++++++++++++++++++++++++??????????+++++++++++++++++++++++++++++++++++++++ -->
+  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.model.Data">
+    <id column="dataid" jdbcType="INTEGER" property="dataid" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="dataurl" jdbcType="VARCHAR" property="dataurl" />
+    <result column="dataname" jdbcType="VARCHAR" property="dataname" />
+    <result column="rdataname" jdbcType="VARCHAR" property="rdataname" />
   </resultMap>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     dataid, userid, dataurl, dataname, rdataname
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from data
     where dataid = #{dataid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from data
     where dataid = #{dataid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.edu.nuc.ssm.model.Data" >
+  <insert id="insert" parameterType="cn.edu.nuc.ssm.model.Data">
     insert into data (dataid, userid, dataurl, 
       dataname, rdataname)
     values (#{dataid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{dataurl,jdbcType=VARCHAR}, 
       #{dataname,jdbcType=VARCHAR}, #{rdataname,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.model.Data" >
+  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.model.Data">
     insert into data
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="dataid != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dataid != null">
         dataid,
       </if>
-      <if test="userid != null" >
+      <if test="userid != null">
         userid,
       </if>
-      <if test="dataurl != null" >
+      <if test="dataurl != null">
         dataurl,
       </if>
-      <if test="dataname != null" >
+      <if test="dataname != null">
         dataname,
       </if>
-      <if test="rdataname != null" >
+      <if test="rdataname != null">
         rdataname,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="dataid != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dataid != null">
         #{dataid,jdbcType=INTEGER},
       </if>
-      <if test="userid != null" >
+      <if test="userid != null">
         #{userid,jdbcType=INTEGER},
       </if>
-      <if test="dataurl != null" >
+      <if test="dataurl != null">
         #{dataurl,jdbcType=VARCHAR},
       </if>
-      <if test="dataname != null" >
+      <if test="dataname != null">
         #{dataname,jdbcType=VARCHAR},
       </if>
-      <if test="rdataname != null" >
+      <if test="rdataname != null">
         #{rdataname,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.model.Data" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.model.Data">
     update data
-    <set >
-      <if test="userid != null" >
+    <set>
+      <if test="userid != null">
         userid = #{userid,jdbcType=INTEGER},
       </if>
-      <if test="dataurl != null" >
+      <if test="dataurl != null">
         dataurl = #{dataurl,jdbcType=VARCHAR},
       </if>
-      <if test="dataname != null" >
+      <if test="dataname != null">
         dataname = #{dataname,jdbcType=VARCHAR},
       </if>
-      <if test="rdataname != null" >
+      <if test="rdataname != null">
         rdataname = #{rdataname,jdbcType=VARCHAR},
       </if>
     </set>
     where dataid = #{dataid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.model.Data" >
+  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.model.Data">
     update data
     set userid = #{userid,jdbcType=INTEGER},
       dataurl = #{dataurl,jdbcType=VARCHAR},
@@ -90,4 +94,6 @@
       rdataname = #{rdataname,jdbcType=VARCHAR}
     where dataid = #{dataid,jdbcType=INTEGER}
   </update>
+  
+  <!-- +++++++++++++++++++++++++++++++??????????+++++++++++++++++++++++++++++++++++++++ -->
 </mapper>

@@ -3,6 +3,8 @@ package cn.edu.nuc.ssm.model;
 import java.util.Date;
 
 public class Comment {
+	
+	/*---------------------防覆盖护体盾-------------------------*/
     private Integer commentid;
 
 	private Integer funid;
@@ -62,6 +64,16 @@ public class Comment {
 	public void setFcommentid(Integer fcommentid) {
 		this.fcommentid = fcommentid;
 	}
+
+	@Override
+	public String toString() {
+		return "Comment [commentid=" + commentid + ", funid=" + funid + ", commentinfo=" + commentinfo + ", pcommentid="
+				+ pcommentid + ", commenttime=" + commenttime + ", fcommentid=" + fcommentid + "]";
+	}
+	
+	
+	
+	/*---------------------防覆盖护体盾-------------------------*/
 
 	
 }

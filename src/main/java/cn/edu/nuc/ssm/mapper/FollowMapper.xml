@@ -2,6 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.nuc.ssm.dao.FollowMapper">
   
+  
+  <!-- +++++++++++++++++++++++++++++++防覆盖护体盾+++++++++++++++++++++++++++++++++++++++ -->
   <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.model.Follow">
     <id column="followid" jdbcType="INTEGER" property="followid" />
     <result column="userid" jdbcType="INTEGER" property="userid" />
@@ -80,4 +82,6 @@
       followsta = #{followsta,jdbcType=INTEGER}
     where followid = #{followid,jdbcType=INTEGER}
   </update>
+  
+  <!-- +++++++++++++++++++++++++++++++防覆盖护体盾+++++++++++++++++++++++++++++++++++++++ -->
 </mapper>

@@ -3,6 +3,8 @@ package cn.edu.nuc.ssm.model;
 import java.util.Date;
 
 public class Userinfo {
+	
+	/*---------------------防覆盖护体盾-------------------------*/
     private Integer infoid;
 
 	private Integer userid;
@@ -63,5 +65,7 @@ public class Userinfo {
 		this.birth = birth;
 	}
 
+	
+	/*---------------------防覆盖护体盾-------------------------*/
 	
 }
