@@ -80,6 +80,13 @@
       #{preplyid,jdbcType=INTEGER}, #{replytime,jdbcType=TIMESTAMP}, #{freplyid,jdbcType=INTEGER}
       )
   </insert>
+  
+  <insert id="insertNoReplyid" parameterType="cn.edu.nuc.ssm.model.Reply">
+  	insert into reply (commentid, replyinfo, replyid, replytime, freplyid)
+  	values (#{commentid,jdbcType=INTEGER}, #{replyinfo,jdbcType=VARCHAR}, #{preplyid,jdbcType=INTEGER},
+  	#{replytime,jdbcType=TIMESTAMP},#{freplyid,jdbcType=INTEGER})
+  </insert>
+  
   <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.model.Reply">
     insert into reply
     <trim prefix="(" suffix=")" suffixOverrides=",">

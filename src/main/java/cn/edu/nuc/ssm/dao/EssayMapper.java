@@ -29,6 +29,8 @@ public interface EssayMapper {
     
     int selectMaxEsyid();
     
+    int updateEsyidNoesyurl(Essay record);
+    
     /*-------------------放覆盖护体盾--------------------------*/
     
 }

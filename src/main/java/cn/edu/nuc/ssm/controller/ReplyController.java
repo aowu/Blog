@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.edu.nuc.ssm.dto.PageInfo;
+import cn.edu.nuc.ssm.model.Comment;
+import cn.edu.nuc.ssm.model.Reply;
 import cn.edu.nuc.ssm.service.interfaces.ReplyService;
 
 @Controller
@@ -29,4 +31,15 @@ public class ReplyController {
 		System.out.println(pi);
 		return pi;
 	}
+	
+	@RequestMapping(value="/reply/insert",method=RequestMethod.POST)
+	public String insertreply(
+			Reply record,
+			HttpSession session
+			){
+		
+		replyService.insertNoReplyid(record);
+		return "redirect:/commentTest";
+	}
+	
 }

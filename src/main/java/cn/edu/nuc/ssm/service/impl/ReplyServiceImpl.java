@@ -1,5 +1,6 @@
 package cn.edu.nuc.ssm.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,15 @@ public class ReplyServiceImpl implements ReplyService {
 		pi.setList(list);
 		
 		return pi;
+		
+	}
+	@Override
+	public int insertNoReplyid(Reply record) {
+		
+		Date date = new Date();
+		record.setReplytime(date);
+		int a = replyMapper.insertNoReplyid(record);
+		return a;
 		
 	}
 

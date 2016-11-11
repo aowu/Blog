@@ -3,8 +3,11 @@ package cn.edu.nuc.ssm.service.impl;
 
 
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
@@ -83,11 +86,73 @@ public class EssayServiceImpl implements EssayService {
 		return end;
 	}
 
+	/**
+	 * 返回文章内容
+	 */
 	@Override
-	public String sellectByEsyid(Integer esyid) {
-		// TODO Auto-generated method stub
-		return null;
+	public String sellectByEsyid(Integer esyid) throws IOException {
+		
+		Essay essay = essayMapper.selectByPrimaryKey(esyid);
+		String url = essay.getEsyurl();
+		//读取文件的路径
+		FileReader fr=new FileReader(url);
+		String esyinfo = "";
+		BufferedReader br=new BufferedReader(fr);
+		String r = br.readLine();
+        while(r!=null){
+            esyinfo += r;
+            r=br.readLine();
+            System.out.println("service:"+esyinfo);
+        }
+        br.close();
+        fr.close();
+		return esyinfo;
 	}
+	
+	
+	
+	
+	
+	/**
+	 * 修改文章内容
+	 */
+	public void updateByEsyinfo(Integer esyid, String esyinfo) throws IOException {
+		
+		Essay essay = essayMapper.selectByPrimaryKey(esyid);
+		String url = essay.getEsyurl();
+		//读取文件的路径
+		File file = new File(url);
+		BufferedWriter out = new BufferedWriter(new FileWriter(file));
+		
+		out.write(esyinfo);
+		
+		out.flush();
+		
+		out.close();
+		
+	} 
+	
+	
+	@Override
+	public Integer updateEssay(Essay record) {
+		
+		
+		
+		
+		int a = essayMapper.updateEsyidNoesyurl(record);
+		
+		return a;
+	}
+
+	@Override
+	public Essay sellectByEsyidEssay(Integer esyid) {
+		
+		
+		Essay essay = essayMapper.selectByPrimaryKey(esyid);
+		
+		return essay;
+	}
+	
 	
 	
 

@@ -103,7 +103,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<c:forEach items="${function}" var="child">
 							<c:if test="${child.funpid==top.funid}">
 								<li>
-									<a href="<%=basePath%>${child.funurl}">${child.funname}</a>
+									<a href="<%=basePath%>1${child.funurl}">${child.funname}</a>
 								</li>
 							</c:if>
 						</c:forEach>

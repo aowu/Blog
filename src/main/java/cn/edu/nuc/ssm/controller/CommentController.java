@@ -25,6 +25,14 @@ public class CommentController {
 	@Autowired
 	private SuperCommentService scs;
 	
+	/**
+	 * 查看评论（以淘汰）
+	 * @param userid
+	 * @param current
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/{userid}/commentTest",method=RequestMethod.GET)
 	public String commenttest(
 			@PathVariable("userid") int userid,
@@ -41,7 +49,14 @@ public class CommentController {
 		
 	}
 	
-	@RequestMapping(value="/{userid}/comment",method=RequestMethod.GET)
+	/**
+	 * 返回评论表单
+	 * @param userid
+	 * @param current
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="/{userid}/comment",method=RequestMethod.POST)
 	public @ResponseBody PageInfo comment(
 			@PathVariable("userid") int userid,
 			@RequestParam(name="current",defaultValue="1") int current,
@@ -53,6 +68,10 @@ public class CommentController {
 		return pi;
 	}
 	
+	/**
+	 * 查看评论
+	 * @return
+	 */
 	@RequestMapping(value="/commentTest",method=RequestMethod.GET)
 	public String show(){
 		return "Test/Comment";
@@ -65,7 +84,7 @@ public class CommentController {
 			){
 		
 		commentService.insertNoCommentid(comment);
-		return "Test/Comment";
+		return "redirect:/commentTest";
 	}
 	
 	

@@ -19,8 +19,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link ref="stylesheet" href="<%=basePath%>byaowu/shCoreDefault.css">
 	<link ref="stylesheet" type="text/css" href="<%=basePath%>byaowu/embed.bluebox.css">
 	<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
-	
-	
+	<script src="<%=basePath%>byaowu/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="<%=basePath%>byaowu/util.js"></script>
+    <script type="text/javascript" src="<%=basePath%>byaowu/index.js"></script>
+    <script>var duoshuoQuery = {short_name:"cononico"};</script>
+    <script src="<%=basePath%>byaowu/embed.js"></script>
+    <script src="<%=basePath%>byaowu/shCore.js"></script>
+    <script src="<%=basePath%>byaowu/jquery.pjax.js"></script>
+    <script src="<%=basePath%>byaowu/pjax-loading.js"></script>
+    <script src="<%=basePath%>byaowu/tagcanvas.min.js"></script>
 		
 	<style type="text/css">
 		#ds-thread #ds-reset .ds-comment-body, #ds-thread #ds-reset ul.ds-children .ds-comment-body {
@@ -71,12 +78,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     height: 50px;
 }
 
-
-
-
-
-
-
 #ds-thread #ds-reset ul.ds-children .ds-avatar {
     width: 50px;
     height: 50px;
@@ -87,7 +88,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     height: 50px;
 }
 	
+#commentText {
+	resize: none;
+	width: 100%;
+	height:150px;
+	max-height:150px;
+}	
+
+#fashe{
 	
+}
 	
 	</style>
 		
@@ -140,15 +150,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div> -->
 	
 	
-<div >
-	<div>
-		<form action="" method="post">
-			<input type="hidden" name="" value="">
-			<textarea name="comment" cols="45" rows="4">
+<div ng-app="myApp" ng-cloak>
+	<div ng-controller="formc">
+		<form action="/comment/insert" method="post">
+			<input type="hidden" name="pcommentid" value="1" >
+			<input type="hidden" name="fcommentid" value="1" >
+			<div class="ds-textarea-wrapper ds-rounded-top" >
+			<textarea id="commentText" name="commentinfo">
 			</textarea>
+			<pre class="ds-hidden-text"></pre>
+			</div>
+			<div class="ds-post-toolbar">
+			<div class="ds-post-options ds-gradient-bg">
+				
+			</div>
+			
+			<!-- <button class="ds-post-button" type="submit" id="fashe" ng-click="comment">发射</button> -->
+			<input type="submit" value="发射">
+			</div>
+			
 		</form>
 	</div>
-	<div id="ds-thread" ng-app="myApp" ng-controller="sitCtrl">
+	<div id="ds-thread"   ng-controller="sitCtrl">
 		<div id="ds-reset" ng-repeat="x in list">
 		<ul class="ds-comments">
 		<li class="ds-post">
@@ -208,20 +231,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	
 	
-	
-	
-	
-	
-	
-	
 	<script>
 		/* 遍历评论 */
 		var app = angular.module('myApp',[]);
 		app.controller('sitCtrl', function($scope, $http){
-			$http.get("http://localhost/1/comment",current=1).success(
+			$http({
+				method : 'POST',
+				url	   : 'http://localhost/1/comment',
+				data   : current=1
+				/*headers*/
+			}).success(
 					function(response, status, headers, config){
 						
-						alert("success");
+						/* alert("success"); */
 						
 						$scope.datas = response;
 						
@@ -231,36 +253,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 						$scope.listr = $scope.datas.list.replys
 						
-						alert(JSON.stringify($scope.datas.list[0].replys))
-						
-						
+						/* alert(JSON.stringify($scope.datas.list[0].replys)) */
 						
 					});
 		})
-		
-		/* var appc = angular.module('myAppc',[]);
-		appc.controller('siteCtrlc', function($scope, $http){
-			$http.get($rootscope.url,current=1).success(
-					function(response, status, headers, config){
-						alert("success1");
-				
-			});
+		var appc = angular.module('myAppc',[])
+		app.controller('formc', function($scope, $http){
 			
-		});  */
+			$scope.formData = {};
+			
+			$scope.comment = function(){
+				$http({
+					method : 'POST',
+					url	   : 'http://localhost/comment/insert',
+					data   : $scope.formData
+					/*headers*/
+				}).success(function(data){
+					
+				})
+				
+				
+			}
+			
+		})
 		
-	
 	
 	</script>
 	
-	<script src="<%=basePath%>byaowu/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="<%=basePath%>byaowu/util.js"></script>
-    <script type="text/javascript" src="<%=basePath%>byaowu/index.js"></script>
-    <script>var duoshuoQuery = {short_name:"cononico"};</script>
-    <script src="<%=basePath%>byaowu/embed.js"></script>
-    <script src="<%=basePath%>byaowu/shCore.js"></script>
-    <script src="<%=basePath%>byaowu/jquery.pjax.js"></script>
-    <script src="<%=basePath%>byaowu/pjax-loading.js"></script>
-    <script src="<%=basePath%>byaowu/tagcanvas.min.js"></script>
+	
+    
 	
 	
 </body>

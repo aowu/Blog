@@ -148,5 +148,14 @@
     where esyid = #{esyid,jdbcType=INTEGER}
   </update>
   
+  <update id="updateEsyidNoesyurl" parameterType="cn.edu.nuc.ssm.model.Essay">
+    update essay
+    set 
+      esyname = #{esyname,jdbcType=VARCHAR},
+      esysummary = #{esysummary,jdbcType=VARCHAR},
+      esysta = #{esysta,jdbcType=INTEGER},
+    where esyid = #{esyid,jdbcType=INTEGER}
+  </update>
+  
   <!-- +++++++++++++++++++++++++++++++防覆盖护体盾+++++++++++++++++++++++++++++++++++++++ -->
 </mapper>

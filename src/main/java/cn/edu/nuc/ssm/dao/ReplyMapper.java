@@ -30,5 +30,7 @@ public interface ReplyMapper {
     
     List<SuperReply> SuperSelectReply(@Param("commentid")Integer commentid);
     
+    int insertNoReplyid(Reply record);
+    
     /*-------------------放覆盖护体盾--------------------------*/
 }

@@ -1,5 +1,7 @@
 package cn.edu.nuc.ssm.service;
 
+import java.io.IOException;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -25,6 +27,18 @@ public class EssayServiceTest extends BaseTest {
 	public void insert(){
 		int a = essayService.insertEssay("aowu",1, new Essay());
 		System.out.println("测试："+a);
+	}
+	
+	@Test
+	public void selectbyid(){
+		try {
+			String aowu = essayService.sellectByEsyid(3);
+			System.out.println(aowu);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 }

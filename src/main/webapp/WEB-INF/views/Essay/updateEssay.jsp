@@ -15,34 +15,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" charset="utf-8" src="<%=basePath%>ueditor/lang/zh-cn/zh-cn.js"></script>
 <!-- 实例化编辑器 -->
 	<script type="text/javascript">
-		var ue = UE.getEditor('editor')
+		var ue = UE.getEditor('fullNameSuffix')
 	</script>
 	
 <script type="text/javascript">
 	function get(){
-		var arr = [];
-		arr.push(UE.getEditor('editor').getContent());
-		alert(arr.join("\n"));
-		return ture;
+		/* var arr = []; */
+		//获取编辑器
+		/* arr.push(UE.getEditor('fullNameSuffix').getContent()); */
+		/* alert(arr.join("\n"));
+		return ture; */
+		UE.getEditor('fullNameSuffix').getContent();
 	}
-	/* window.location.href="?edi"; */
+	
+	var url = "/1/"+ ${esyid} + "/essay/updateesyinfo";
+	
+	document.myForm.action = url; 
 
 </script>
 
-<title>aowu</title>
+<title>修改文章</title>
 </head>
 <body>
-	<form action="/1/addessay" method="post" >
-		<div>
-			文章名<input type="text" name="esyname">
-		</div>
+	<form action="" name="myForm" method="post">
 		<div>
 		<table>
 			<tr>
 				<td>
-					<script id="editor" type="text/plain" name="content" style="width:autu;height:auto;min-height:450px;">
-						<p>嗷呜的召唤兽：你回来了master</p>
-					</script>
+					<script id="fullNameSuffix" type="text/plain" name="content" style="width:autu;height:auto;min-height:450px;">${esyinfo}</script>
 				</td>
 			</tr>
 		</table>

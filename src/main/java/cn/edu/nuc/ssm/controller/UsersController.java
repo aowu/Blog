@@ -42,4 +42,9 @@ public class UsersController {
 		return "home";
 	}
 	
+	@RequestMapping(value="/aowu/home", method=RequestMethod.GET)
+	public String homehtmb(){
+		return "htmb/index";
+	}
+	
 }

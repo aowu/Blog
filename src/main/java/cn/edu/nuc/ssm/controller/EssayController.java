@@ -1,5 +1,7 @@
 package cn.edu.nuc.ssm.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -17,14 +19,13 @@ import cn.edu.nuc.ssm.model.Essay;
 import cn.edu.nuc.ssm.service.interfaces.EssayService;
 
 @Controller
-@RequestMapping("/u")
 public class EssayController {
 
 	@Autowired
 	private EssayService essayService;
 	
 	//分页查看文章列表
-	@RequestMapping(value="/{userid}/home",method=RequestMethod.GET)
+	@RequestMapping(value="/{userid}/essay",method=RequestMethod.GET)
 	public String essay(
 			@PathVariable("userid") int userid,
 			@RequestParam(name="current",defaultValue="1") int current,
@@ -53,6 +54,14 @@ public class EssayController {
 			return a;
 	}
 	
+	/**
+	 * 文章添加
+	 * @param userid
+	 * @param session
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/{userid}/addessay",method=RequestMethod.POST)
 	public String addessay(
 			@PathVariable("userid") int userid,
@@ -66,20 +75,168 @@ public class EssayController {
 			essay.setEsyname(esyname);
 			essayService.insertEssay(a, userid, essay);
 			
-			return "redirect:/u/"+userid+"/home";
+			return "redirect:/"+userid+"/home/type";
 			
 	}
 	
+	/**
+	 * 文章添加GET
+	 * @return
+	 */
+	@RequestMapping(value="/{userid}/addessay",method=RequestMethod.GET)
+	public String cktest1(){
+		
+		return "Essay/editor";
+	}
+	
+	/**
+	 * 文章展示
+	 * @param userid
+	 * @param esyid
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="/{userid}/{esyid}/essay/showeesyinfo",method=RequestMethod.GET)
+	public String showessayinfo(
+			@PathVariable("userid") int userid,
+			@PathVariable("esyid") int esyid,
+			HttpSession session,
+			Model model
+			){
+			String esyinfo = null;
+			try {
+				esyinfo = essayService.sellectByEsyid(esyid);
+				System.out.println("controller:"+esyinfo);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			model.addAttribute("esyinfo", esyinfo);
+			return "Essay/show";
+	}
+	
+	/**
+	 * 文章修改编辑器跳转处
+	 * @param userid
+	 * @param esyid
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/{userid}/{esyid}/essay/updateesyinfo",method=RequestMethod.GET)
+	public String updateessayinfo(
+			@PathVariable("userid") int userid,
+			@PathVariable("esyid") int esyid,
+			HttpSession session,
+			Model model
+			){
+			String esyinfo = null;
+			try {
+				esyinfo = essayService.sellectByEsyid(esyid);
+				System.out.println(esyinfo);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			model.addAttribute("esyinfo", esyinfo);
+			
+			return "Essay/updateEssay";
+	}
+	
+	/**
+	 * 更新文章内容
+	 * @param userid
+	 * @param esyid
+	 * @param session
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/{userid}/{esyid}/essay/updateesyinfo",method=RequestMethod.POST)
+	public String updateessayinfotofile(
+			@PathVariable("userid") int userid,
+			@PathVariable("esyid") int esyid,
+			HttpSession session,
+			HttpServletRequest request,
+			Model model
+			){
+			String esyinfo = request.getParameter("content");
+			
+			try {
+				essayService.updateByEsyinfo(esyid, esyinfo);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return "redirect:/1/"+esyid+"/essay/showeesyinfo";
+	}
+	
+	/**
+	 * 更新文章属性
+	 * @param userid
+	 * @param esyid
+	 * @param session
+	 * @param essay
+	 * @return
+	 */
+	@RequestMapping(value="/{userid}/{esyid}/essay/updateessay",method=RequestMethod.POST)
+	public String updateessay(
+			@PathVariable("userid") int userid,
+			@PathVariable("esyid") int esyid,
+			HttpSession session,
+			Essay essay
+			){
+			System.out.println("updateessay"+essay);
+			essayService.updateEssay(essay);
+			
+			return "Essay/Essay";
+			
+	}
+	
+	@RequestMapping(value="/{userid}/{esyid}/essay/updateessay",method=RequestMethod.GET)
+	public String updateessayget(
+			@PathVariable("userid") int userid,
+			@PathVariable("esyid") int esyid,
+			HttpSession session,
+			Model model
+			){
+			model.addAttribute("esyid", esyid);
+			
+			return "Essay/updateEssayNoUrl";
+	}
+	
+	/**
+	 * 返回文章属性
+	 * @param userid
+	 * @param esyid
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/{userid}/{esyid}/getessay",method=RequestMethod.POST)
+	public @ResponseBody Essay getessay(
+			@PathVariable("userid") int userid,
+			@PathVariable("esyid") int esyid,
+			HttpSession session,
+			Model model
+			){
+			Essay essay = essayService.sellectByEsyidEssay(esyid);
+			System.out.println(essay);
+			return essay;
+	}
+	
+	
+	
+	/**
+	 * 测试
+	 * @return
+	 */
 	@RequestMapping(value="/test",method=RequestMethod.GET)
 	public String cktest(){
 		
 		return "redirect:/ckeditor/samples/index.html";
-	}
-	
-	@RequestMapping(value="/test1",method=RequestMethod.GET)
-	public String cktest1(){
-		
-		return "Essay/editor";
 	}
 	
 	

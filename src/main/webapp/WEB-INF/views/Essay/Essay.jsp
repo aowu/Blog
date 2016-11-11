@@ -45,6 +45,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<th>
 							文章状态
 						</th>
+						<th>
+							修改属性
+						</th>
+						<th>
+							修改文章
+						</th>
+						<th>
+							删除文章
+						</th>
 					</tr>
 				</thead>
 				<tbody >
@@ -64,6 +73,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</td>
 						<td>
 							${w.esysta}
+						</td>
+						<td>
+							<a href="1/${w.esyid}/essay/updateessay">编辑</a>
+						</td>
+						<td>
+							<a href="1/${w.esyid}/essay/updateesyinfo">编辑</a>
+						</td>
+						<td>
+							<a href="">删除</a>
 						</td>
 					</tr>
 				</c:forEach>

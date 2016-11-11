@@ -25,6 +25,7 @@
     select 
     <include refid="Base_Column_List" />
     from function
+    where funsta = 1
   </select>
   
   
