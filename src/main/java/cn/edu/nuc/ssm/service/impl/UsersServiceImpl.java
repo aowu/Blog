@@ -1,5 +1,7 @@
 package cn.edu.nuc.ssm.service.impl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,19 @@ public class UsersServiceImpl implements UsersService {
 		}
 		
 		log.info("{}帐号登录成功!", usernum);
+		return user;
+	}
+
+	@Override
+	public List<Users> selectAllUser() {
+		
+		List<Users> list = usersMapper.selectAllUser();
+		
+		return list;
+	}
+	
+	public Users selectByUserid(Integer userid){
+		Users user = usersMapper.selectByPrimaryKey(userid);
 		return user;
 	}
 

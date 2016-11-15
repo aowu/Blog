@@ -21,6 +21,13 @@
     from data
     where dataid = #{dataid,jdbcType=INTEGER}
   </select>
+  <select id="selectByUserid" parameterType="java.lang.Integer" resultType="cn.edu.nuc.ssm.model.Data">
+  select
+  <include refid="Base_Column_List" />
+  from data
+  where userid= #{dataid,jdbcType=INTEGER}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from data
     where dataid = #{dataid,jdbcType=INTEGER}

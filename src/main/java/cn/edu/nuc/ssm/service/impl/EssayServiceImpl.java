@@ -136,9 +136,6 @@ public class EssayServiceImpl implements EssayService {
 	@Override
 	public Integer updateEssay(Essay record) {
 		
-		
-		
-		
 		int a = essayMapper.updateEsyidNoesyurl(record);
 		
 		return a;

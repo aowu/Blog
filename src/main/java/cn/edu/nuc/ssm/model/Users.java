@@ -94,6 +94,13 @@ public class Users {
 	public void setUsersta(Integer usersta) {
 		this.usersta = usersta;
 	}
+
+	@Override
+	public String toString() {
+		return "Users [userid=" + userid + ", infoid=" + infoid + ", roleid=" + roleid + ", usernum=" + usernum
+				+ ", userpas=" + userpas + ", pictureurl=" + pictureurl + ", username=" + username + ", usertime="
+				+ usertime + ", usersta=" + usersta + "]";
+	}
 	
 	/*---------------------防覆盖护体盾-------------------------*/
 

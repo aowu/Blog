@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			href="<%=basePath%>jslib/font-awesome/css/font-awesome.css">
 		<script src="<%=basePath%>jslib/jquery-1.7.2.min.js"
 			type="text/javascript"></script>
-		
+			
 
 		<style type="text/css">
 #line-chart {
@@ -60,13 +60,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body class="">
    <!--<![endif]-->
    
+   
 		<div class="navbar">
 			<div class="navbar-inner">
 				<ul class="nav pull-right">
 					<li id="fat-menu" class="dropdown">
 						<a href="#" role="button" class="dropdown-toggle"
 							data-toggle="dropdown"> <i class="icon-user"></i>
-							${user.username}<i class="icon-caret-down"></i>
+							${user.username}(${user.rolename}) <i class="icon-caret-down"></i>
 						</a>
 
 						<ul class="dropdown-menu">
@@ -90,9 +91,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 
-		<div class="sidebar-nav">
-			<c:forEach items="${function}" var="top">
-				<c:if test="${top.funpid==\"1\"}">
+		<div class="sidebar-nav" ng-app="myapp" ng-cloak>
+			
 					<a href="#error-menu${top.funid}" class="nav-header collapsed" data-toggle="collapse">
 						<i class="icon-briefcase"></i>
 						${top.funname}
@@ -102,13 +102,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<c:forEach items="${function}" var="child">
 							<c:if test="${child.funpid==top.funid}">
 								<li>
-									<a href="<%=basePath%>${userid}${child.funurl}">${child.funname}</a>
+									<a href="<%=basePath%>1${child.funurl}">${child.funname}</a>
 								</li>
 							</c:if>
 						</c:forEach>
 					</ul>
-				</c:if>
-			</c:forEach>
+				
 		</div>
 		<div class="content">
 			<iframe name="main" height="600px" width="100%" scrolling="auto"
@@ -116,8 +115,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			</iframe>
 		</div>
-		
 		<script src="<%=basePath%>jslib/bootstrap/js/bootstrap.js"></script>
-   
+   <script>
+   	var app = angular.module('myapp',[]);
+		app.controller('tbody',function($scope, $http){
+			$http({
+				method : 'POST',
+				url	   : '/1/getroles'
+			}).success(function(response, status, headers, config){
+				
+				$scope.datas = response;
+				alert($scope.datas);
+				$scope.list = $scope.datas
+			});
+			
+		});
+	</script>
   </body>
 </html>

@@ -33,7 +33,7 @@ public class CommentController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value="/{userid}/commentTest",method=RequestMethod.GET)
+	@RequestMapping(value="/{userid}/CommentTest",method=RequestMethod.GET)
 	public String commenttest(
 			@PathVariable("userid") int userid,
 			@RequestParam(name="current",defaultValue="1") int current,
@@ -60,10 +60,12 @@ public class CommentController {
 	public @ResponseBody PageInfo comment(
 			@PathVariable("userid") int userid,
 			@RequestParam(name="current",defaultValue="1") int current,
-			HttpSession session
+			HttpSession session,
+			Model model
 			){
 		
 		PageInfo pi = scs.superSelect(userid, current);
+		model.addAttribute("userid",userid);
 		System.out.println(pi);
 		return pi;
 	}
@@ -72,19 +74,25 @@ public class CommentController {
 	 * 查看评论
 	 * @return
 	 */
-	@RequestMapping(value="/commentTest",method=RequestMethod.GET)
-	public String show(){
+	@RequestMapping(value="/{userid}/commentTest",method=RequestMethod.GET)
+	public String show(
+			@PathVariable("userid") int userid,
+			Model model
+			){
+		model.addAttribute("userid",userid);
 		return "Test/Comment";
 	}
 	
-	@RequestMapping(value="/comment/insert",method=RequestMethod.POST)
+	@RequestMapping(value="/{userid}/comment/insert",method=RequestMethod.POST)
 	public String insert(
+			@PathVariable("userid") int userid,
 			Comment comment,
 			HttpSession session
 			){
 		
 		commentService.insertNoCommentid(comment);
-		return "redirect:/commentTest";
+		
+		return "redirect:/"+userid+"/commentTest";
 	}
 	
 	

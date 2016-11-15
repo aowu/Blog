@@ -57,28 +57,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</tr>
 				</thead>
 				<tbody >
-				<c:forEach items="${pi.list}" var="w">
+				<c:forEach items="${pi.list}" var="pi">
 					<tr>
 						<td>
-							${w.esyname}
+							${pi.esyname}
 						</td>
 						<td>
-							${w.userid}
+							${pi.userid}
 						</td>
 						<td>
-							${w.esysummary}
+							${pi.esysummary}
 						</td>
 						<td>
-							${w.esytime}
+							${pi.esytime}
 						</td>
 						<td>
-							${w.esysta}
+							${pi.esysta}
 						</td>
 						<td>
-							<a href="1/${w.esyid}/essay/updateessay">编辑</a>
+							<a href="${userid}/${pi.esyid}/essay/updateessay">编辑</a>
 						</td>
 						<td>
-							<a href="1/${w.esyid}/essay/updateesyinfo">编辑</a>
+							<a href="${userid}/${pi.esyid}/essay/updateesyinfo">编辑</a>
 						</td>
 						<td>
 							<a href="">删除</a>
@@ -88,6 +88,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</tbody>
 			</table>
 		</div>
+		<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+			<div class="pagination">
+				<div class="page-info">
+					<span>当前第${pi.current }页/共${pi.count }条/${pi.total }页</span>
+					
+					<c:if test="${pi.current gt 1 }">
+						<a href="/${userid}/essay?current=1"">首页</a>
+						<a href="/${userid}/essay?current=${pi.current - 1 }">上一页</a>
+					</c:if>
+					
+					<c:if test="${pi.current lt pi.total }">
+						<a href="/${userid}/essay?current=${pi.current + 1 }">下一页</a>
+						<a href="/${userid}/essay?current=${pi.total }">尾页</a>
+					</c:if>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 	</div>
 </div>
 

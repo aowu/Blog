@@ -17,6 +17,16 @@
     from ftor
     where ftorid = #{ftorid,jdbcType=INTEGER}
   </select>
+  
+  <select id="selectByRoleid" parameterType="java.lang.Integer" resultType="cn.edu.nuc.ssm.model.Ftor">
+  select
+  <include refid="Base_Column_List" />
+  from ftor
+  where 
+  roleid = #{roleid,jdbcType=INTEGER}
+  </select>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from ftor
     where ftorid = #{ftorid,jdbcType=INTEGER}

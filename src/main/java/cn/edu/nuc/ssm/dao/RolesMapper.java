@@ -1,5 +1,7 @@
 package cn.edu.nuc.ssm.dao;
 
+import java.util.List;
+
 import cn.edu.nuc.ssm.model.Roles;
 
 public interface RolesMapper {
@@ -18,6 +20,8 @@ public interface RolesMapper {
     int updateByPrimaryKeySelective(Roles record);
 
     int updateByPrimaryKey(Roles record);
+    
+    List<Roles> selectAllRoles();
     
     /*-------------------放覆盖护体盾--------------------------*/
 }

@@ -10,5 +10,8 @@ public interface DataService {
 
 	int insert(List<Data> list,int userid);
 
+	List<Data> selectByUserid(Integer userid);
+
+	Data selectByDataid(Integer dataid);
 	
 }

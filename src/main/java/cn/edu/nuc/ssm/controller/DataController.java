@@ -1,19 +1,16 @@
 package cn.edu.nuc.ssm.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,14 +25,14 @@ public class DataController {
 	@Autowired
 	private  DataService dataService;
 
-	@RequestMapping(value="upload",method=RequestMethod.POST)
+	@RequestMapping(value="/{userid}/upload",method=RequestMethod.POST)
 	public @ResponseBody String upload(
+			@PathVariable("userid") int userid,
 			HttpServletRequest request,
 			HttpSession session
 			){
 		
 		List<Data> list = null;
-		int userid =1;
 		int a =0;
 		try {
 			list = FileOperateUtil.upload(request);
@@ -51,29 +48,51 @@ public class DataController {
 	}
 	
 	
-	@RequestMapping(value="upload",method=RequestMethod.GET)
-	public String uploadtest(){
-		
-		
+	@RequestMapping(value="/{userid}/upload",method=RequestMethod.GET)
+	public String uploadtest(
+			@PathVariable("userid") int userid,
+			Model model
+			){
+		model.addAttribute("userid", userid);
 		return "upload/uploadtest";
 	}
 	
-	@RequestMapping(value="download",method=RequestMethod.GET)
-	public ResponseEntity<byte[]> download() throws IOException{
+	@RequestMapping(value="/{dataid}/down",method=RequestMethod.GET)
+	public ResponseEntity<byte[]> download(
+			@PathVariable("dataid") int dataid
+			) throws IOException{
 		
-		Data data1 = new Data();
-		data1.setDataurl("I:/upload/201611071051169523640393000.gif");
-		ResponseEntity<byte[]> aowu = FileOperateUtil.download(data1);
+		
+		Data data = dataService.selectByDataid(dataid);
+		
+		ResponseEntity<byte[]> aowu = FileOperateUtil.download(data);
 		
 		return aowu;
 		
 	}
 	
-	/*@RequestMapping(value="download",method=RequestMethod.GET)
-	public String downloadtest(){
+	@RequestMapping(value="/{userid}/download",method=RequestMethod.GET)
+	public String downloadtest(
+			@PathVariable("userid") int userid,
+			Model model
+			){
+		model.addAttribute("userid", userid);
+		return "upload/dowload";
+	}
+	
+	
+	
+	@RequestMapping(value="/{userid}/getdownload",method=RequestMethod.POST)
+	public @ResponseBody List<Data> getupload(
+			@PathVariable("userid") int userid,
+			HttpSession session
+			){
 		
-		return "upload/download";
-	}*/
+		List<Data> list = dataService.selectByUserid(userid);
+		
+		
+		return list;
+	}
 	
 	
 	

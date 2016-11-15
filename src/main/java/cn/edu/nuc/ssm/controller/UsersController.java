@@ -2,14 +2,19 @@ package cn.edu.nuc.ssm.controller;
 
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.edu.nuc.ssm.model.Roles;
 import cn.edu.nuc.ssm.model.Users;
 import cn.edu.nuc.ssm.service.interfaces.UsersService;
 
@@ -25,12 +30,16 @@ public class UsersController {
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(Users user, HttpSession session){
-		
+	public String login(
+			Users user,
+			HttpSession session
+			){
 		try{
-			usersService.login(user.getUsernum(), user.getUserpas());
-			session.setAttribute("user", user);
-			return "redirect:/u/"+user.getUsernum()+"/home";
+			Users usera = usersService.login(user.getUsernum(), user.getUserpas());
+			session.setAttribute("user", usera);
+			Users userc = (Users) session.getAttribute("user");
+			System.out.println(userc);
+			return "redirect:/"+usera.getUserid()+"/home";
 		} catch(Exception e){
 			e.printStackTrace();
 		}
@@ -42,9 +51,24 @@ public class UsersController {
 		return "home";
 	}
 	
-	@RequestMapping(value="/aowu/home", method=RequestMethod.GET)
-	public String homehtmb(){
-		return "htmb/index";
+	
+	
+	@RequestMapping(value="/{userid}/showusers", method=RequestMethod.GET)
+	public String showRoles(){
+		
+		return "users/users";
 	}
+	
+	@RequestMapping(value="/{userid}/getusers", method=RequestMethod.POST)
+	public @ResponseBody List<Users> showRoles(
+			@PathVariable("userid") int userid
+			){
+		
+		List<Users> list = usersService.selectAllUser();
+		return list;
+	}
+	
+	
+	
 	
 }

@@ -26,13 +26,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		return ture;
 	}
 	/* window.location.href="?edi"; */
+	var user = session.getAttribute("id");
+	var url = "/"+user.userid+"/addessay";
+		
+		document.myForm.action = url;
 
 </script>
 
 <title>aowu</title>
 </head>
 <body>
-	<form action="/1/addessay" method="post" >
+	<form action="" name="myForm" method="post" >
 		<div>
 			文章名<input type="text" name="esyname">
 		</div>
@@ -41,7 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<tr>
 				<td>
 					<script id="editor" type="text/plain" name="content" style="width:autu;height:auto;min-height:450px;">
-						<p>嗷呜的召唤兽：你回来了master</p>
+						<p>马克思列宁主义</p>
 					</script>
 				</td>
 			</tr>

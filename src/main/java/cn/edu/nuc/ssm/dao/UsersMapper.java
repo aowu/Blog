@@ -1,5 +1,7 @@
 package cn.edu.nuc.ssm.dao;
 
+import java.util.List;
+
 import cn.edu.nuc.ssm.model.Users;
 
 public interface UsersMapper {
@@ -18,6 +20,8 @@ public interface UsersMapper {
     int updateByPrimaryKey(Users record);
     
     Users selectByUsernum(String usernum);
+    
+    List<Users> selectAllUser();
     
     /*-------------------放覆盖护体盾--------------------------*/
 }

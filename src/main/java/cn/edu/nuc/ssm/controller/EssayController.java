@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.edu.nuc.ssm.dto.PageInfo;
 import cn.edu.nuc.ssm.model.Essay;
+import cn.edu.nuc.ssm.model.Users;
 import cn.edu.nuc.ssm.service.interfaces.EssayService;
 
 @Controller
@@ -38,6 +39,7 @@ public class EssayController {
 		}*/
 		PageInfo pi = essayService.selectAllEssay(userid, current);
 		model.addAttribute("pi", pi);
+		model.addAttribute("userid",userid);
 		System.out.println("pageinfo:"+pi);
 		return "Essay/Essay";
 		
@@ -75,7 +77,7 @@ public class EssayController {
 			essay.setEsyname(esyname);
 			essayService.insertEssay(a, userid, essay);
 			
-			return "redirect:/"+userid+"/home/type";
+			return "redirect:/"+userid+"/essay";
 			
 	}
 	
@@ -103,6 +105,9 @@ public class EssayController {
 			HttpSession session,
 			Model model
 			){
+		
+			
+			
 			String esyinfo = null;
 			try {
 				esyinfo = essayService.sellectByEsyid(esyid);
@@ -170,7 +175,7 @@ public class EssayController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return "redirect:/1/"+esyid+"/essay/showeesyinfo";
+			return "redirect:/"+userid+"/"+esyid+"/essay/showeesyinfo";
 	}
 	
 	/**
@@ -186,12 +191,13 @@ public class EssayController {
 			@PathVariable("userid") int userid,
 			@PathVariable("esyid") int esyid,
 			HttpSession session,
+			Model model,
 			Essay essay
 			){
 			System.out.println("updateessay"+essay);
 			essayService.updateEssay(essay);
-			
-			return "Essay/Essay";
+			model.addAttribute("userid", userid);
+			return "redirect:/"+userid+"/essay";
 			
 	}
 	

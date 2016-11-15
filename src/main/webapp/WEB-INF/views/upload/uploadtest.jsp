@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form enctype="multipart/form-data" action="upload" method="post">  
+	<form enctype="multipart/form-data" action="/${userid}/upload" method="post">  
     <input type="file" name="file1" /> <input type="text" name="alais" /><br />  
     <input type="file" name="file2" /> <input type="text" name="alais" /><br />  
     <input type="file" name="file3" /> <input type="text" name="alais" /><br />  

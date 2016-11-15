@@ -29,4 +29,11 @@ public class FunctionServiceTest extends BaseTest {
 		List<Function> fun = functionService.selectAllFunid();
 		System.out.println(fun);
 	}
+	
+	@Test
+	public void selectByRole(){
+		List<Function> fun = functionService.selectByroleid(1);
+		System.out.println(fun);
+	}
+	
 }

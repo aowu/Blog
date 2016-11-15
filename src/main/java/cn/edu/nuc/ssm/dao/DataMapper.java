@@ -1,5 +1,7 @@
 package cn.edu.nuc.ssm.dao;
 
+import java.util.List;
+
 import cn.edu.nuc.ssm.model.Data;
 
 public interface DataMapper {
@@ -19,6 +21,8 @@ public interface DataMapper {
     int updateByPrimaryKeySelective(Data record);
 
     int updateByPrimaryKey(Data record);
+    
+    List<Data> selectByUserid(Integer userid);
     
     /*-------------------放覆盖护体盾--------------------------*/
 }

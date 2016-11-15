@@ -18,7 +18,8 @@
     select 
     <include refid="Base_Column_List" />
     from function
-    where funid = #{funid,jdbcType=INTEGER}
+    where funid = #{funid,jdbcType=INTEGER} 
+    and funsta =1
   </select>
   
   <select id="selectALLFunid" resultType="Function">

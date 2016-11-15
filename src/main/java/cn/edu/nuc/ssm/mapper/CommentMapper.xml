@@ -34,7 +34,7 @@
   </select>
   
   <!-- 分页 -->
-  <select id="selectByUserid" parameterType="java.lang.Integer" resultType="Comment">
+  <select id="selectByUserid" parameterType="java.lang.Integer" resultType="cn.edu.nuc.ssm.model.Comment">
     	select 
     	<include refid="Base_Column_List" />
     	from comment

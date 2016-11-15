@@ -30,4 +30,18 @@ public class DataServiceImpl implements DataService {
 		return a;
 	}
 
+	@Override
+	public List<Data> selectByUserid(Integer userid) {
+		
+		List<Data> list = dataMapper.selectByUserid(userid);
+		return list;
+	}
+	
+	@Override
+	public Data selectByDataid(Integer dataid) {
+		
+		Data  data = dataMapper.selectByPrimaryKey(dataid);
+		return data;
+	}
+
 }

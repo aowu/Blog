@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -151,10 +152,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	
 <div ng-app="myApp" ng-cloak>
-	<div ng-controller="formc">
-		<form action="/comment/insert" method="post">
-			<input type="hidden" name="pcommentid" value="1" >
-			<input type="hidden" name="fcommentid" value="1" >
+	
+	<div id="ds-thread"   ng-controller="sitCtrl">
+		用户<input type="text" ng-model="pid">
+		<button ng-click="sayHello()">gogogo</button>
+		{{greeting}}
+		<div>
+			<form name="myform" action="" method="post">
+			<input  name="pcommentid" ng-model="ppid" ng-show="false">
+			<input type="hidden" name="fcommentid" value="${userid}" >
 			<div class="ds-textarea-wrapper ds-rounded-top" >
 			<textarea id="commentText" name="commentinfo">
 			</textarea>
@@ -170,8 +176,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			
 		</form>
-	</div>
-	<div id="ds-thread"   ng-controller="sitCtrl">
+		</div>
 		<div id="ds-reset" ng-repeat="x in list">
 		<ul class="ds-comments">
 		<li class="ds-post">
@@ -224,7 +229,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</ul>
 		</div>
 	</div>
-</div>	
+	
 	
 	
 	
@@ -233,12 +238,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<script>
 		/* 遍历评论 */
+		
+		 
 		var app = angular.module('myApp',[]);
 		app.controller('sitCtrl', function($scope, $http){
+			
+			$scope.pid = ${userid};
+			$scope.ppid = $scope.pid;
+			$scope.sayHello = function() {
+	            $scope.greeting = "Hello~" + $scope.pid + "!";
+	            $scope.ppid = $scope.pid;
+	            var url = 'http://localhost/'+$scope.pid+'/comment';
+				$http({
+					method : 'POST',
+					url	   : url
+					/*headers*/
+				}).success(
+						function(response, status, headers, config){
+							
+							/* alert("success"); */
+							
+							$scope.datas = response;
+							
+							/* alert(JSON.stringify($scope.datas)); */ 
+							
+							$scope.list = $scope.datas.list;
+							
+							$scope.listr = $scope.datas.list.replys
+							
+							/* alert(JSON.stringify($scope.datas.list[0].replys)) */
+							
+						});
+	        };
+			var url = 'http://localhost/'+$scope.pid+'/comment';
 			$http({
 				method : 'POST',
-				url	   : 'http://localhost/1/comment',
-				data   : current=1
+				url	   : url
 				/*headers*/
 			}).success(
 					function(response, status, headers, config){
@@ -257,25 +292,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 					});
 		})
-		var appc = angular.module('myAppc',[])
-		app.controller('formc', function($scope, $http){
 			
-			$scope.formData = {};
+		
+		
+		var urlz = '/'+${userid}+"/comment/insert";
+		alert(urlz);
+		document.myform.action = urlz;
+		
+		
+		
+		
 			
-			$scope.comment = function(){
-				$http({
-					method : 'POST',
-					url	   : 'http://localhost/comment/insert',
-					data   : $scope.formData
-					/*headers*/
-				}).success(function(data){
-					
-				})
-				
-				
-			}
-			
-		})
 		
 	
 	</script>

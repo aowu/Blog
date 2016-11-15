@@ -14,4 +14,6 @@ public interface FunctionService {
 	Function selectByFunid(Integer funid);
 	
 	List<Function> selectAllFunid();
+	
+	List<Function> selectByroleid(Integer roleid);
 }

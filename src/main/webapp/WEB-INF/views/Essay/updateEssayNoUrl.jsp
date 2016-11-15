@@ -65,7 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<form  action="" name="myForm" method="post">
 							
 							<input type="hidden" name="esyid" value="${esyid}">
-							<input type="hidden" name="userid" value="1" >
+							<input type="hidden" name="userid" value="${userid}" >
 							<label>
 								文章名
 							</label>
@@ -104,11 +104,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$scope.esysta = $scope.datas.esysta;
 				$scope.esysummary = $scope.datas.esysummary;
 				$scope.esyid = a;
-			})
+			});
 		});
 		
-		var url = "/1/"+ a + "/essay/updateessay";
 		
+		
+		var url = '/'+${userid}+'/'+ a + "/essay/updateessay";
+		alert(url);
 		document.myForm.action = url;
 		
 		</script>

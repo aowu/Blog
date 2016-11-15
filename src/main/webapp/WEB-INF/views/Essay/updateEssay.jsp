@@ -28,7 +28,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		UE.getEditor('fullNameSuffix').getContent();
 	}
 	
-	var url = "/1/"+ ${esyid} + "/essay/updateesyinfo";
+	var user = session.getAttrbute("usera");
+	
+	var url = user.userid+ ${esyid} + "/essay/updateesyinfo";
 	
 	document.myForm.action = url; 
 

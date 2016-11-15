@@ -18,6 +18,13 @@
     from roles
     where roleid = #{roleid,jdbcType=INTEGER}
   </select>
+  
+  <select id="selectAllRoles" resultType="cn.edu.nuc.ssm.model.Roles" >
+  	select
+  	<include refid="Base_Column_List" />
+  	from roles
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from roles
     where roleid = #{roleid,jdbcType=INTEGER}
